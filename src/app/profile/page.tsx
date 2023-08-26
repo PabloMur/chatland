@@ -1,4 +1,4 @@
-import SecondaryTitle from "../components/ui/SecondaryTitles";
+import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
 import UserEmail from "../components/ui/UserEmail";
 import UserName from "../components/ui/UserName";
 const ProfilePage = () => {

@@ -1,7 +1,7 @@
 "use client";
 import FormInput from "./ui/FormInput";
-import SecondaryTitle from "./ui/SecondaryTitles";
-import TertiaryTitle from "./ui/TertiaryTitle";
+import SecondaryTitle from "./ui/Titles/SecondaryTitles";
+import TertiaryTitle from "./ui/Titles/TertiaryTitle";
 import { useState } from "react";
 
 const LoginForm = () => {

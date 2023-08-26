@@ -1,4 +1,4 @@
-import SecondaryTitle from "../components/ui/SecondaryTitles";
+import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
 const SettingsPage = () => {
   return (
     <div className="h-full w-full bg-orange-100 flex items-center justify-center">

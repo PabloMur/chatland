@@ -7,7 +7,7 @@ type InputProps = {
 const FormInput = ({ type, name, onChange, value }: InputProps) => {
   return (
     <input
-      className="h-10 my-3 p-3 rounded-lg bg-indigo-200"
+      className="h-10 my-3 p-3 rounded-lg bg-indigo-200 border border-indigo-900"
       type={type}
       name={name}
       value={value}
