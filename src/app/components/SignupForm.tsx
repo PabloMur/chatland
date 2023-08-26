@@ -30,33 +30,30 @@ const SignupForm = () => {
         onSubmit={handleSubmit}
         className="flex flex-col items-center bg-white p-4 rounded-lg"
       >
-        <label>
-          <TertiaryTitle>Tu email</TertiaryTitle>
-          <FormInput
-            type="email"
-            name="email"
-            onChange={handleOnChage}
-            value={email}
-          />
-        </label>
-        <label>
-          <TertiaryTitle>Ingresa una contraseña</TertiaryTitle>
-          <FormInput
-            type="password"
-            name="pone"
-            onChange={handleOnChagePassOne}
-            value={passOne}
-          />
-        </label>
-        <label>
-          <TertiaryTitle>Repite la contraseña</TertiaryTitle>
-          <FormInput
-            type="password"
-            name="ptwo"
-            onChange={handleOnChagePassTwo}
-            value={passTwo}
-          />
-        </label>
+        <FormInput
+          title="Tu Email"
+          type="email"
+          name="email"
+          onChange={handleOnChage}
+          value={email}
+        />
+
+        <FormInput
+          title="Ingresa una contraseña"
+          type="password"
+          name="pone"
+          onChange={handleOnChagePassOne}
+          value={passOne}
+        />
+
+        <FormInput
+          title="Repite la contraseña"
+          type="password"
+          name="ptwo"
+          onChange={handleOnChagePassTwo}
+          value={passTwo}
+        />
+
         <button className="w-full bg-indigo-900 py-3 text-orange-100 rounded-lg">
           Enviar
         </button>

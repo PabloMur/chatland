@@ -22,15 +22,14 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
         className="flex flex-col items-center bg-white p-4 rounded-lg shadow-2xl bg-opacity-80"
       >
-        <label>
-          <TertiaryTitle>Ingresa tu email</TertiaryTitle>
-          <FormInput
-            type="email"
-            name="email"
-            onChange={handleOnChage}
-            value={email}
-          />
-        </label>
+        <FormInput
+          title="Ingresa tu email"
+          type="email"
+          name="email"
+          onChange={handleOnChage}
+          value={email}
+        />
+
         <button className="w-full bg-indigo-900 py-3 text-orange-100 rounded-lg">
           Enviar
         </button>

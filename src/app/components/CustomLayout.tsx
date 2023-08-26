@@ -3,23 +3,21 @@ import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import { RecoilRoot } from "recoil";
 import Menu from "./Menu";
+import Sidebar from "./Sidebar";
 const LayoutMenu = ({ children }: any) => {
   return (
     <RecoilRoot>
-      <div className="flex flex-col">
+      <div className="flex flex-col sm:flex-row">
         <Navbar />
-        <Menu></Menu>
-        <div className="h-screen">{children}</div>
+        <Menu />
+        <Sidebar />
+        {children}
       </div>
     </RecoilRoot>
   );
 };
 const LayoutOnly = ({ children }: any) => {
-  return (
-    <RecoilRoot>
-      <div>{children}</div>
-    </RecoilRoot>
-  );
+  return <RecoilRoot>{children}</RecoilRoot>;
 };
 
 const CustomLayout = ({ children }: any) => {

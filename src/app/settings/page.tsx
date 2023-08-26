@@ -1,9 +1,10 @@
+import PageContainer from "../components/containers/PageContainer";
 import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
 const SettingsPage = () => {
   return (
-    <div className="h-full w-full bg-orange-100 flex items-center justify-center">
+    <PageContainer>
       <SecondaryTitle>Settings</SecondaryTitle>
-    </div>
+    </PageContainer>
   );
 };
 export default SettingsPage;
