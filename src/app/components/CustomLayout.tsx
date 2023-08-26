@@ -2,11 +2,13 @@
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import { RecoilRoot } from "recoil";
+import Menu from "./Menu";
 const LayoutMenu = ({ children }: any) => {
   return (
     <RecoilRoot>
       <div className="flex flex-col">
         <Navbar />
+        <Menu></Menu>
         <div className="h-screen">{children}</div>
       </div>
     </RecoilRoot>

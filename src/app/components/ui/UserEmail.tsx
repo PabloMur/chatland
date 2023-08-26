@@ -1,8 +1,9 @@
 "use client";
 import { useRecoilValue } from "recoil";
 import { userEmailAtom } from "@/atoms/atoms";
+import TertiaryTitle from "./Titles/TertiaryTitle";
 const UserName = () => {
   const userEmail = useRecoilValue(userEmailAtom);
-  return <div>{userEmail}</div>;
+  return <TertiaryTitle>{userEmail}</TertiaryTitle>;
 };
 export default UserName;
