@@ -12,7 +12,7 @@ const MenuLi = ({ children, route }: any) => {
   return (
     <li
       onClick={handleClick}
-      className="w-full h-12 grid place-items-center text-orange-100"
+      className="w-full h-1/4 grid place-items-center text-orange-100 text-xl"
     >
       <button>{children}</button>
     </li>
