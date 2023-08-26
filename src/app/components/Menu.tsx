@@ -9,8 +9,8 @@ const Menu = () => {
     active && (
       <div>
         <div className="h-screen w-full sm:w-1/4 absolute left-0 bg-indigo-950 flex flex-col items-center justify-between p-4">
-          <ul className="h-3/5">
-            <div className="h-16"></div>
+          <div className="h-16"></div>
+          <ul className="h-3/5 w-full">
             <MenuLi route="/home">Home</MenuLi>
             <MenuLi route="/myRooms">My Rooms</MenuLi>
             <MenuLi route="/profile">Profile</MenuLi>
