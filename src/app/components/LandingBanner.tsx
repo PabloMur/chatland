@@ -6,6 +6,7 @@ const LandingBanner = () => {
       <p className="text-indigo-900 text-2xl w-4/5 my-9 text-center">
         {`"... Donde las conversaciones fluyen y las risas nunca faltan ..."`}
       </p>
+
       <Link href="/login">
         <button className="bg-indigo-900 text-orange-100 p-5 rounded-full shadow-xl">
           Comenzar
