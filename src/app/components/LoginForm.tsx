@@ -16,11 +16,11 @@ const LoginForm = () => {
     alert(email);
   };
   return (
-    <div className="w-1/2 h-4/5 flex flex-col items-center justify-center">
+    <div className="w-full h-screen flex flex-col items-center justify-center z-10">
       <SecondaryTitle>Inicia Sesion</SecondaryTitle>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center bg-white p-4 rounded-lg"
+        className="flex flex-col items-center bg-white p-4 rounded-lg shadow-2xl bg-opacity-80"
       >
         <label>
           <TertiaryTitle>Ingresa tu email</TertiaryTitle>
