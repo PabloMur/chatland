@@ -1,8 +1,8 @@
-const CustomImageBanner = ({ children }: any) => {
+const CustomPrevFrames = ({ children }: any) => {
   return (
-    <div className="h-screen bg-orange-100 flex flex-row items-center justify-center">
+    <div className="h-screen w-full bg-orange-100 grid place-items-center">
       {children}
     </div>
   );
 };
-export default CustomImageBanner;
+export default CustomPrevFrames;
