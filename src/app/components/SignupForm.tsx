@@ -1,7 +1,6 @@
 "use client";
 import FormInput from "./ui/FormInput";
 import SecondaryTitle from "./ui/Titles/SecondaryTitles";
-import TertiaryTitle from "./ui/Titles/TertiaryTitle";
 import { useState } from "react";
 
 const SignupForm = () => {
@@ -24,7 +23,7 @@ const SignupForm = () => {
     alert(email);
   };
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center z-10">
+    <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">
       <SecondaryTitle>Registrate</SecondaryTitle>
       <form
         onSubmit={handleSubmit}

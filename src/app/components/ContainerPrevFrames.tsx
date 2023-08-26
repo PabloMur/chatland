@@ -1,6 +1,6 @@
 const CustomPrevFrames = ({ children }: any) => {
   return (
-    <div className="min-h-screen w-full bg-indigo-900 grid place-items-center sm:flex sm:flex-row">
+    <div className="h-screen w-full bg-indigo-900 grid place-items-center sm:flex sm:flex-row">
       {children}
     </div>
   );
