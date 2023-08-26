@@ -1,16 +1,23 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
+import { RecoilRoot } from "recoil";
 const LayoutMenu = ({ children }: any) => {
   return (
-    <div className="flex">
-      <Navbar />
-      {children}
-    </div>
+    <RecoilRoot>
+      <div className="flex flex-col">
+        <Navbar />
+        <div className="h-screen">{children}</div>
+      </div>
+    </RecoilRoot>
   );
 };
 const LayoutOnly = ({ children }: any) => {
-  return <div>{children}</div>;
+  return (
+    <RecoilRoot>
+      <div>{children}</div>
+    </RecoilRoot>
+  );
 };
 
 const CustomLayout = ({ children }: any) => {

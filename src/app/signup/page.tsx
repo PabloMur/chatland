@@ -1,11 +1,11 @@
 import CustomImageBanner from "@/app/components/CustomImageBanner";
 import ContainerPrevFrames from "@/app/components/ContainerPrevFrames";
 import loginImage from "../../../public/img/welcome.jpg";
-import LoginForm from "@/app/components/LoginForm";
+import SignupForm from "../components/SignupForm";
 export default function Signup() {
   return (
     <ContainerPrevFrames>
-      <LoginForm></LoginForm>
+      <SignupForm />
       <CustomImageBanner
         imageUrl={loginImage}
         imageAlt="imagen de una mujer con un smartphone"

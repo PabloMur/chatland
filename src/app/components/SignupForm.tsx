@@ -16,14 +16,32 @@ const SignupForm = () => {
     alert(email);
   };
   return (
-    <div className="w-1/2 h-4/5 flex flex-col items-center justify-center">
-      <SecondaryTitle>Inicia Sesion</SecondaryTitle>
+    <div className="w-full h-screen flex flex-col items-center justify-center z-10">
+      <SecondaryTitle>Registrate</SecondaryTitle>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center bg-white p-4 rounded-lg"
       >
         <label>
           <TertiaryTitle>Ingresa tu email</TertiaryTitle>
+          <FormInput
+            type="email"
+            name="email"
+            onChange={handleOnChage}
+            value={email}
+          />
+        </label>
+        <label>
+          <TertiaryTitle>Ingresa una contraseña</TertiaryTitle>
+          <FormInput
+            type="email"
+            name="email"
+            onChange={handleOnChage}
+            value={email}
+          />
+        </label>
+        <label>
+          <TertiaryTitle>Repite la contraseña</TertiaryTitle>
           <FormInput
             type="email"
             name="email"
