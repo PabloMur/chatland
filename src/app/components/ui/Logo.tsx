@@ -11,7 +11,7 @@ const Logo = () => {
   };
   return (
     <button type="button" onClick={handleClick}>
-      <h2 className="text-orange-100 text-3xl">Chatland</h2>
+      <h2 className="text-orange-100 text-4xl">Chatland</h2>
     </button>
   );
 };
