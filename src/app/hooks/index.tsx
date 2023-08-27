@@ -12,7 +12,7 @@ import {
   APISendMessage,
   APISetImGuest,
   APIUpdateUserData,
-} from "../../lib/APICalls";
+} from "../lib/APICalls";
 
 //Room Hooks -->
 export const useCheckEmail = async (email: string) => {
