@@ -22,7 +22,7 @@ const LayoutOnly = ({ children }: any) => {
 
 const CustomLayout = ({ children }: any) => {
   const pathname = usePathname();
-  const rutasSinMenu = ["/", "/login", "/signup"];
+  const rutasSinMenu = ["/", "/login", "/signup", "/password"];
   const layoutMenu = !rutasSinMenu.includes(pathname);
   return !layoutMenu ? (
     <LayoutOnly>{children}</LayoutOnly>

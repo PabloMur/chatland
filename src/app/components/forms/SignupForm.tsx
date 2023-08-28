@@ -1,6 +1,6 @@
 "use client";
-import FormInput from "./ui/FormInput";
-import SecondaryTitle from "./ui/Titles/SecondaryTitles";
+import FormInput from "../ui/FormInput";
+import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useState } from "react";
 
 const SignupForm = () => {

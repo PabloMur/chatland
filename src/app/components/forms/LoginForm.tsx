@@ -1,12 +1,12 @@
 "use client";
-import FormInput from "./ui/FormInput";
-import SecondaryTitle from "./ui/Titles/SecondaryTitles";
+import FormInput from "../ui/FormInput";
+import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useState } from "react";
-import { useCheckEmail } from "@/app/hooks";
+import { useCheckEmail, useGoTo } from "@/app/hooks";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
-
+  const goTo = useGoTo();
   const handleOnChage = (e: any) => {
     setEmail(e.target.value);
   };
@@ -14,7 +14,7 @@ const LoginForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const emailExists = await useCheckEmail(email);
-    if (emailExists) alert(emailExists.checkEmail);
+    if (emailExists.checkEmail) goTo.push("/password");
   };
   return (
     <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">
