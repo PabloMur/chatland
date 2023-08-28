@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import UserController from "@/controllers/userController";
+import UserController from "@/lib/controllers/userController";
 export async function POST(request: NextRequest) {
   try {
     const userCreated = await UserController.createUser(request);

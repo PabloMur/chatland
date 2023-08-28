@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import UserController from "@/controllers/userController";
+import UserController from "@/lib/controllers/userController";
 
 export default async function GET(request: NextRequest) {
   try {

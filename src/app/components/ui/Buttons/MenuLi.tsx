@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useSetRecoilState } from "recoil";
-import { menuActive } from "@/atoms/uiAtoms";
+import { menuActive } from "@/lib/atoms/uiAtoms";
 const MenuLi = ({ children, route }: any) => {
   const router = useRouter();
   const setMenuAtom = useSetRecoilState(menuActive);
@@ -12,7 +12,7 @@ const MenuLi = ({ children, route }: any) => {
   return (
     <li
       onClick={handleClick}
-      className="cursor-pointer w-full h-1/4 grid place-items-center text-orange-100 text-xl hover:bg-orange-100 hover:text-indigo-900"
+      className="cursor-pointer w-full h-20 grid place-items-center text-orange-100 text-xl hover:bg-orange-100 hover:text-indigo-900"
     >
       <button>{children}</button>
     </li>

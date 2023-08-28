@@ -1,4 +1,4 @@
-import { realtimeDB } from "@/app/lib/FirestoreConn";
+import { realtimeDB } from "@/lib/FirestoreConn";
 import { NextRequest, NextResponse } from "next/server";
 
 type Message = {

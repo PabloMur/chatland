@@ -1,5 +1,5 @@
 "use client";
-import { menuActive } from "@/atoms/uiAtoms";
+import { menuActive } from "@/lib/atoms/uiAtoms";
 import { useRecoilValue } from "recoil";
 import MenuLi from "./ui/Buttons/MenuLi";
 import CloseSessionButton from "./ui/Buttons/CloseSession";

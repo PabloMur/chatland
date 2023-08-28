@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { firestoreDB } from "@/app/lib/FirestoreConn";
+import { firestoreDB } from "@/lib/FirestoreConn";
 //Endpoint para obtener la id de la chatroom mediante el codigo mas pequeño
 //Tarea: Hacer que esto funcione con un controller mejor
 export async function GET(request: NextRequest, { params }: any) {

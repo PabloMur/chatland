@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import roomController from "@/controllers/roomController";
+import roomController from "@/lib/controllers/roomController";
 //Falta que tambien se elimine en la realtime
 export async function DELETE(request: NextRequest, { params }: any) {
   try {

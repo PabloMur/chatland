@@ -1,4 +1,4 @@
-import { firestoreDB } from "@/app/lib/FirestoreConn";
+import { firestoreDB } from "@/lib/FirestoreConn";
 class roomModel {
   static async deleteRoom(roomId: string) {
     try {

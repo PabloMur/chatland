@@ -1,4 +1,4 @@
-import { firestoreDB } from "@/app/lib/FirestoreConn";
+import { firestoreDB } from "@/lib/FirestoreConn";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 

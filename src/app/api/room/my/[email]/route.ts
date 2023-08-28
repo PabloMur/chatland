@@ -1,4 +1,4 @@
-import { firestoreDB } from "@/app/lib/FirestoreConn";
+import { firestoreDB } from "@/lib/FirestoreConn";
 import { NextRequest, NextResponse } from "next/server";
 //probablemente esto deba ser modificadao para que se use una queri mas que la url
 //Tarea: Hacer que esto funcione gracias al controler

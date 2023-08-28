@@ -1,4 +1,4 @@
-import AuthController from "@/controllers/authController";
+import AuthController from "@/lib/controllers/authController";
 import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {

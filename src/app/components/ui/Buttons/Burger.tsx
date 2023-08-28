@@ -1,5 +1,5 @@
 "use client";
-import { menuActive } from "@/atoms/uiAtoms";
+import { menuActive } from "@/lib/atoms/uiAtoms";
 import { useRecoilState } from "recoil";
 const Burger = () => {
   const [active, setActive] = useRecoilState(menuActive);

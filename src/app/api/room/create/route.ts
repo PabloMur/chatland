@@ -1,4 +1,4 @@
-import roomController from "@/controllers/roomController";
+import roomController from "@/lib/controllers/roomController";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

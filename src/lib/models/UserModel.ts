@@ -1,5 +1,5 @@
-import { firestoreDB } from "@/app/lib/FirestoreConn";
-import { cloudinary } from "@/app/lib/CloudinaryConn";
+import { firestoreDB } from "@/lib/FirestoreConn";
+import { cloudinary } from "@/lib/CloudinaryConn";
 import bcrypt from "bcrypt";
 class UserModel {
   static async createMe(email: string, password: string) {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { firestoreDB, realtimeDB } from "@/app/lib/FirestoreConn";
+import { firestoreDB, realtimeDB } from "@/lib/FirestoreConn";
 //Endpoint para setear que soy guest en una room
 //Tarea: Hacer que esto funcione con un controller
 export async function PUT(request: NextRequest) {

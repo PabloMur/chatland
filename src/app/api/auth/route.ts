@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import AuthController from "@/controllers/authController";
+import AuthController from "@/lib/controllers/authController";
 
 export async function POST(request: Request) {
   try {

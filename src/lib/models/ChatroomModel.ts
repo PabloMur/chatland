@@ -1,8 +1,8 @@
-import { firestoreDB, realtimeDB } from "@/app/lib/FirestoreConn";
+import { firestoreDB, realtimeDB } from "@/lib/FirestoreConn";
 import admin from "firebase-admin";
 import jwt from "jsonwebtoken";
 import { nanoid } from "nanoid";
-import { generarNumeroAleatorio } from "../app/lib/tools";
+import { generarNumeroAleatorio } from "../tools";
 
 class CreateChatroomModel {
   static async createChatroom(token: string) {

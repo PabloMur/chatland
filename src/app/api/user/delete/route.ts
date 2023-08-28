@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import UserController from "@/controllers/userController";
-import AuthController from "@/controllers/authController";
+import UserController from "@/lib/controllers/userController";
+import AuthController from "@/lib/controllers/authController";
 
 export async function DELETE(request: NextRequest) {
   try {
