@@ -7,17 +7,10 @@ callURL = "https://chatback-theta.vercel.app/api/";
 
 export const APICheckEmail = async (email: any) => {
   try {
-    const fetching = await fetch(callURL + "checkEmail", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+    console.log("ApiCall");
+    const fetching = await fetch("/api/user/check/" + email);
     const response = await fetching.json();
     console.log(response);
-
     return response;
   } catch (error) {
     console.error(error);

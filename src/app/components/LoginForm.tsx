@@ -2,6 +2,7 @@
 import FormInput from "./ui/FormInput";
 import SecondaryTitle from "./ui/Titles/SecondaryTitles";
 import { useState } from "react";
+import { useCheckEmail } from "@/app/hooks";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -10,9 +11,10 @@ const LoginForm = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    alert(email);
+    const emailExists = await useCheckEmail(email);
+    if (emailExists) alert(emailExists.checkEmail);
   };
   return (
     <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">

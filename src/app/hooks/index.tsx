@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import {
   APICheckEmail,
   APICreateChatroom,
@@ -12,9 +13,14 @@ import {
   APISendMessage,
   APISetImGuest,
   APIUpdateUserData,
-} from "../lib/APICalls";
+} from "@/lib/APICalls";
 
 //Room Hooks -->
+export const useGoTo = () => {
+  const router = useRouter();
+  return router;
+};
+
 export const useCheckEmail = async (email: string) => {
   try {
     const checkEmail = await APICheckEmail(email);
