@@ -3,6 +3,7 @@ import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useState } from "react";
 import { useCheckEmail, useGoTo } from "@/app/hooks";
+import { APICheckEmail } from "@/lib/APICalls";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const emailExists = await useCheckEmail(email);
+    const emailExists = await APICheckEmail(email);
     if (emailExists.checkEmail) goTo.push("/password");
   };
   return (
