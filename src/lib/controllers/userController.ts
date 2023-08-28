@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { UserModel } from "../models/UserModel";
 import jwt from "jsonwebtoken";
 import { NextRequest } from "next/server";

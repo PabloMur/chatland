@@ -1,9 +1,5 @@
 let callURL: string;
-callURL = "https://chatback-theta.vercel.app/api/";
-//comentario en master
-//comentario desde brunch pablo
-//otro comentario
-//cuarto comentario
+callURL = "/api/";
 
 export const APICheckEmail = async (email: any) => {
   try {
