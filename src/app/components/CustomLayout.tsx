@@ -5,11 +5,13 @@ import { RecoilRoot } from "recoil";
 import Menu from "./Menu";
 import Sidebar from "./Sidebar";
 import { Suspense } from "react";
+import Loader from "./Loader";
 
 const LayoutMenu = ({ children }: any) => {
   return (
     <RecoilRoot>
       <div className="flex flex-col sm:flex-row">
+        <Loader />
         <Navbar />
         <Menu />
         <Sidebar />
@@ -19,7 +21,14 @@ const LayoutMenu = ({ children }: any) => {
   );
 };
 const LayoutOnly = ({ children }: any) => {
-  return <RecoilRoot>{children}</RecoilRoot>;
+  return (
+    <RecoilRoot>
+      <div className="flex flex-col sm:flex-row">
+        <Loader />
+        {children}
+      </div>
+    </RecoilRoot>
+  );
 };
 
 const CustomLayout = ({ children }: any) => {

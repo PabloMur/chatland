@@ -3,12 +3,14 @@ import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useGoTo } from "@/app/hooks";
 import { APIGetToken } from "@/lib/APICalls";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { userEmailAtom, userPasswordAtom } from "@/lib/atoms/atoms";
+import { loaderAtom } from "@/lib/atoms/uiAtoms";
 
 const PasswordForm = () => {
   const email = useRecoilValue(userEmailAtom);
   const [password, setPassword] = useRecoilState(userPasswordAtom);
+  const setLoaderState = useSetRecoilState(loaderAtom);
   const goTo = useGoTo();
 
   const handleOnChage = (e: any) => {
@@ -17,8 +19,13 @@ const PasswordForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoaderState(true);
     const token = await APIGetToken(email, password);
-    if (token) goTo.push("/home");
+    setLoaderState(false);
+    if (token.token) goTo.push("/home");
+    else {
+      alert("Contraseña incorrecta");
+    }
   };
   return (
     <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">

@@ -3,10 +3,12 @@ import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useCheckEmail, useGoTo } from "@/app/hooks";
 import { userEmailAtom } from "@/lib/atoms/atoms";
-import { useRecoilState } from "recoil";
+import { loaderAtom } from "@/lib/atoms/uiAtoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 const LoginForm = () => {
   const [email, setEmail] = useRecoilState(userEmailAtom);
+  const setLoaderState = useSetRecoilState(loaderAtom);
   const checkEmail = useCheckEmail();
   const goTo = useGoTo();
 
@@ -16,7 +18,9 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoaderState(true);
     const emailExists = await checkEmail(email);
+    setLoaderState(false);
     if (emailExists.checkEmail) goTo.push("/password");
     else {
       alert("El email ingresado no existe");
