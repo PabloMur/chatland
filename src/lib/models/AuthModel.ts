@@ -57,7 +57,7 @@ class AuthModel {
 
       // Generar el token JWT
       const token = jwt.sign({ email }, secret);
-      return { token };
+      return token;
     } catch (error) {
       console.error(error);
       return { error: "Method Not Allowed" };
