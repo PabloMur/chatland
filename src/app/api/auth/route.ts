@@ -3,5 +3,7 @@ import AuthController from "@/lib/controllers/authController";
 
 export async function POST(request: NextRequest) {
   const auth = await AuthController.createAuth(request);
-  return NextResponse.json({ authCreated: true }, { status: 200 });
+  console.log(auth);
+
+  return NextResponse.json({ authCreated: auth }, { status: 200 });
 }

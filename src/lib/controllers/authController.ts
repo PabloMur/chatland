@@ -1,9 +1,10 @@
 import AuthModel from "../models/AuthModel";
 import { headers } from "next/headers";
 import jwt from "jsonwebtoken";
+import { NextRequest } from "next/server";
 
 class AuthController {
-  static async createAuth(req: Request) {
+  static async createAuth(req: NextRequest) {
     try {
       const { email, password } = await req.json();
       const created = await AuthModel.createAuth(email, password);
