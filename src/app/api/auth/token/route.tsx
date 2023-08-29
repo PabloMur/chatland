@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const token = await AuthController.retriveToken(request);
-    if (token !== undefined && token !== null) {
+    if (token) {
       return NextResponse.json({ token: token }, { status: 200 });
     }
     return NextResponse.json({ error: 123 }, { status: 400 });
