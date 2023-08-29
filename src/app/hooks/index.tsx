@@ -21,13 +21,15 @@ export const useGoTo = () => {
   return router;
 };
 
-export const useCheckEmail = async (email: string) => {
-  try {
-    const checkEmail = await APICheckEmail(email);
-    return checkEmail;
-  } catch (error) {
-    console.error(error);
-  }
+export const useCheckEmail = () => {
+  return async (email: string) => {
+    try {
+      const checkEmail = await APICheckEmail(email);
+      return checkEmail;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 };
 export const useGetToken = async (email: string, password: string) => {
   try {

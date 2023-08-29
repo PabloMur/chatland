@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import { RecoilRoot } from "recoil";
 import Menu from "./Menu";
 import Sidebar from "./Sidebar";
+import { Suspense } from "react";
+
 const LayoutMenu = ({ children }: any) => {
   return (
     <RecoilRoot>

@@ -7,5 +7,15 @@ export const userNameAtom = atom({
 
 export const userEmailAtom = atom({
   key: "userEmail",
-  default: "example@gmail.com",
+  default: "",
+});
+
+export const userPasswordAtom = atom({
+  key: "userPassword",
+  default: "",
+});
+
+export const userTokenAtom = atom({
+  key: "userToken",
+  default: "",
 });

@@ -37,7 +37,7 @@ export const APICreateUser = async (email: string, password: string) => {
 
 export const APIGetToken = async (email: string, password: string) => {
   try {
-    const fetching = await fetch(callURL + "getTokken", {
+    const fetching = await fetch(callURL + "auth/token", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -46,6 +46,8 @@ export const APIGetToken = async (email: string, password: string) => {
       body: JSON.stringify({ email, password }),
     });
     const response = await fetching.json();
+    console.log(response);
+
     return response;
   } catch (error) {
     console.error(error);

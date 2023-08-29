@@ -1,40 +1,38 @@
 "use client";
 import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
-import { useCheckEmail, useGoTo } from "@/app/hooks";
-import { userEmailAtom } from "@/lib/atoms/atoms";
-import { useRecoilState } from "recoil";
+import { useGoTo } from "@/app/hooks";
+import { APIGetToken } from "@/lib/APICalls";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userEmailAtom, userPasswordAtom } from "@/lib/atoms/atoms";
 
-const LoginForm = () => {
-  const [email, setEmail] = useRecoilState(userEmailAtom);
-  const checkEmail = useCheckEmail();
+const PasswordForm = () => {
+  const email = useRecoilValue(userEmailAtom);
+  const [password, setPassword] = useRecoilState(userPasswordAtom);
   const goTo = useGoTo();
 
   const handleOnChage = (e: any) => {
-    setEmail(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const emailExists = await checkEmail(email);
-    if (emailExists.checkEmail) goTo.push("/password");
-    else {
-      alert("El email ingresado no existe");
-    }
+    const token = await APIGetToken(email, password);
+    if (token) goTo.push("/home");
   };
   return (
     <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">
-      <SecondaryTitle>Inicia Sesion</SecondaryTitle>
+      <SecondaryTitle>Contraseña</SecondaryTitle>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center bg-white p-4 rounded-lg shadow-2xl bg-opacity-80"
       >
         <FormInput
-          title="Ingresa tu email"
-          type="email"
-          name="email"
+          title="Tu contraseña"
+          type="password"
+          name="password"
           onChange={handleOnChage}
-          value={email}
+          value={password}
         />
 
         <button className="w-full bg-indigo-900 py-3 text-orange-100 rounded-lg">
@@ -44,4 +42,4 @@ const LoginForm = () => {
     </div>
   );
 };
-export default LoginForm;
+export default PasswordForm;
