@@ -91,13 +91,15 @@ export const useMyRoomsIDs = () => {
   };
 };
 
-export const useMyGuestRoomsIDs = async (email: string) => {
-  try {
-    const myRooms = await APIGetGuestRoomsIDs(email);
-    return myRooms;
-  } catch (error) {
-    console.error(error);
-  }
+export const useMyGuestRoomsIDs = () => {
+  return async (email: string) => {
+    try {
+      const myRooms = await APIGetGuestRoomsIDs(email);
+      return myRooms;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 };
 
 export const useAPISetImGuest = async (

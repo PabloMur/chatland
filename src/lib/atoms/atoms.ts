@@ -31,3 +31,8 @@ export const userRoomsAtom = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+export const userGuestRoomsAtom = atom({
+  key: "userGuestRoomsAtom",
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
