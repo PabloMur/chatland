@@ -1,7 +1,7 @@
 import roomController from "@/lib/controllers/roomController";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const roomCreatedId = await roomController.createChatroom(request);
     return NextResponse.json(
