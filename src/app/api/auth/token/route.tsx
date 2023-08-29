@@ -6,8 +6,8 @@ export async function POST(request: Request) {
     if (token !== undefined && token !== null) {
       return NextResponse.json({ token: token }, { status: 200 });
     }
+    return NextResponse.json({ error: 123 }, { status: 400 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
   }
 }
