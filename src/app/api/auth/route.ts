@@ -3,7 +3,5 @@ import AuthController from "@/lib/controllers/authController";
 
 export async function POST(request: NextRequest) {
   const auth = await AuthController.createAuth(request);
-  console.log(auth);
-
   return NextResponse.json({ auth });
 }
