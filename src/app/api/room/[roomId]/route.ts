@@ -10,6 +10,8 @@ export async function GET(request: NextRequest, { params }: any) {
     let data = snapshot.data();
     if (data) {
       return NextResponse.json({ roomId: data.roomId }, { status: 200 });
+    } else {
+      return null;
     }
   } catch (error) {
     console.error(error);
