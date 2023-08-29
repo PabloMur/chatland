@@ -20,6 +20,8 @@ const PasswordForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoaderState(true);
+    console.log(email);
+
     const token = await APIGetToken(email, password);
     setLoaderState(false);
     if (token.token) goTo.push("/home");

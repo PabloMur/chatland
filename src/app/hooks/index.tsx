@@ -80,13 +80,15 @@ export const useUpdateUserData = async (
 };
 //User Hooks -->
 
-export const useMyRoomsIDs = async (email: string) => {
-  try {
-    const myRooms = await APIGetRoomsIDs(email);
-    return myRooms;
-  } catch (error) {
-    console.error(error);
-  }
+export const useMyRoomsIDs = () => {
+  return async (email: string) => {
+    try {
+      const myRooms = await APIGetRoomsIDs(email);
+      return myRooms;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 };
 
 export const useMyGuestRoomsIDs = async (email: string) => {

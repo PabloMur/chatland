@@ -14,11 +14,13 @@ const LoginForm = () => {
 
   const handleOnChage = (e: any) => {
     setEmail(e.target.value);
+    console.log(e.target.value);
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoaderState(true);
+    console.log(email + "login");
     const emailExists = await checkEmail(email);
     setLoaderState(false);
     if (emailExists.checkEmail) goTo.push("/password");
