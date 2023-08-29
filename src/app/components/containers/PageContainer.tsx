@@ -1,6 +1,6 @@
 const PageContainer = ({ children }: any) => {
   return (
-    <div className="min-h-screen w-full bg-indigo-950 grid place-items-center">
+    <div className="h-screen w-full bg-indigo-950 flex flex-col items-center justify-center">
       {children}
     </div>
   );

@@ -4,6 +4,10 @@ const MyRoomsPage = () => {
   return (
     <PageContainer>
       <SecondaryTitle>My Rooms</SecondaryTitle>;
+      <div className="flex bg-indigo-900 w-full items-center justify-evenly">
+        <SecondaryTitle>Yours</SecondaryTitle>
+        <SecondaryTitle>Invited</SecondaryTitle>
+      </div>
     </PageContainer>
   );
 };

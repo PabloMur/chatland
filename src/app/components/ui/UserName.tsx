@@ -4,6 +4,6 @@ import { userNameAtom } from "@/lib/atoms/atoms";
 import TertiaryTitle from "./Titles/TertiaryTitle";
 const UserName = () => {
   const userNameValue = useRecoilValue(userNameAtom);
-  return <TertiaryTitle>{userNameValue}</TertiaryTitle>;
+  return <TertiaryTitle>User: {userNameValue}</TertiaryTitle>;
 };
 export default UserName;
