@@ -13,7 +13,7 @@ class AuthController {
       console.error(error);
     }
   }
-  static async deleteAuth(req: Request) {
+  static async deleteAuth(req: NextRequest) {
     try {
       const headersList = headers();
       const authorizationRef = headersList.get("authorization");
@@ -35,7 +35,7 @@ class AuthController {
       return { error: "An error occurred" };
     }
   }
-  static async retriveToken(req: Request) {
+  static async retriveToken(req: NextRequest) {
     try {
       const { email, password } = await req.json();
       const tokenCreated = await AuthModel.creatToken(email, password);
