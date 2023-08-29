@@ -8,8 +8,9 @@ export async function GET(request: NextRequest, { params }: any) {
     const snapshotRef = firestoreDB.collection("rooms").doc(roomId);
     const snapshot = await snapshotRef.get();
     let data = snapshot.data();
-    if (data !== undefined)
+    if (data !== undefined) {
       return NextResponse.json({ roomId: data.roomId }, { status: 200 });
+    }
   } catch (error) {
     return NextResponse.json(
       { error: "Error al buscar la chatroom" },
