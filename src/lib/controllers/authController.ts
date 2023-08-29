@@ -1,4 +1,4 @@
-import AuthModel from "../models/AuthModel";
+import AuthModel from "@/lib/models/AuthModel";
 import { headers } from "next/headers";
 import jwt from "jsonwebtoken";
 import { NextRequest } from "next/server";
