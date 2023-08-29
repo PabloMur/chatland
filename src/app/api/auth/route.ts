@@ -1,8 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import AuthController from "@/lib/controllers/authController";
-import { log } from "console";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const auth = await AuthController.createAuth(request);
     if (auth) {
