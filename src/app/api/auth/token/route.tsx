@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const token = await AuthController.retriveToken(request);
     if (token !== undefined && token !== null) {
-      return NextResponse.json({ token }, { status: 200 });
+      return NextResponse.json({ token: token }, { status: 200 });
     }
   } catch (error) {
     console.error(error);
