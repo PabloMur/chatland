@@ -11,8 +11,8 @@ export async function GET(request: NextRequest, { params }: any) {
     if (data !== undefined && data !== null) {
       return NextResponse.json({ roomId: data.roomId }, { status: 200 });
     }
+    return NextResponse.json({ error: 123 }, { status: 400 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
   }
 }
