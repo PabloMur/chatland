@@ -1,6 +1,6 @@
 import AuthController from "@/lib/controllers/authController";
-import { NextResponse } from "next/server";
-export async function POST(request: Request) {
+import { NextRequest, NextResponse } from "next/server";
+export async function POST(request: NextRequest) {
   try {
     const token = await AuthController.retriveToken(request);
     if (token) {
