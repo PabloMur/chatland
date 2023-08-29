@@ -7,7 +7,7 @@ class AuthController {
     try {
       const { email, password } = await req.json();
       const created = await AuthModel.createAuth(email, password);
-      return created ? true : null;
+      return created ? true : false;
     } catch (error) {
       console.error(error);
     }
