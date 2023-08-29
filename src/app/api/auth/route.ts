@@ -5,5 +5,5 @@ export async function POST(request: NextRequest) {
   const auth = await AuthController.createAuth(request);
   console.log(auth);
 
-  return NextResponse.json({ authCreated: auth }, { status: 200 });
+  return NextResponse.json({ auth });
 }
