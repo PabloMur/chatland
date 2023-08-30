@@ -8,17 +8,17 @@ import RoomIdDisplay from "./ui/Buttons/MyRoomButton";
 const GuestRooms = () => {
   const userEmail = useRecoilValue(userEmailAtom);
   const getMyRooms = useMyGuestRoomsIDs();
-  const [userRooms, setUserRooms] = useRecoilState(userGuestRoomsAtom);
+  const [guestRooms, setGuestRooms] = useRecoilState(userGuestRoomsAtom);
   const handleGetRooms = async () => {
     const rooms = await getMyRooms(userEmail);
-    setUserRooms(rooms);
+    setGuestRooms(rooms);
   };
   useEffect(() => {
     handleGetRooms();
   }, []);
   return (
     <div className="w-full sm:w-1/2 grid grid-cols-3 place-items-center">
-      {userRooms.map((roomID: string) => (
+      {guestRooms.map((roomID: string) => (
         <RoomIdDisplay key={roomID} roomId={roomID} />
       ))}
     </div>

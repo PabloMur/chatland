@@ -15,7 +15,7 @@ export const APICheckEmail = async (email: any) => {
 
 export const APICreateUser = async (email: string, password: string) => {
   try {
-    const fetching = await fetch(callURL + "user", {
+    const fetching = await fetch(callURL + "user/create", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -102,14 +102,7 @@ export const APIGetRoomsIDs = async (email: string) => {
 
 export const APIGetGuestRoomsIDs = async (email: string) => {
   try {
-    const fetching = await fetch(callURL + "myGuestRooms", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+    const fetching = await fetch(callURL + "room/guest/" + email);
     const response = await fetching.json();
     return response.roomIds;
   } catch (error) {

@@ -31,13 +31,15 @@ export const useCheckEmail = () => {
     }
   };
 };
-export const useGetToken = async (email: string, password: string) => {
-  try {
-    const token = await APIGetToken(email, password);
-    if (token) return token;
-  } catch (error) {
-    console.error(error);
-  }
+export const useGetToken = () => {
+  return async (email: string, password: string) => {
+    try {
+      const token = await APIGetToken(email, password);
+      return token;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 };
 export const useGetUserMe = async (email: string, token: any) => {
   try {
@@ -48,13 +50,15 @@ export const useGetUserMe = async (email: string, token: any) => {
   }
 };
 
-export const useCreateUser = async (email: string, password: string) => {
-  try {
-    const createdUser = await APICreateUser(email, password);
-    return createdUser;
-  } catch (error) {
-    console.error(error);
-  }
+export const useCreateUser = () => {
+  return async (email: string, password: string) => {
+    try {
+      const createdUser = await APICreateUser(email, password);
+      return createdUser;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 };
 
 export const useDeleteUser = async (token: string) => {

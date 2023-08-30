@@ -1,13 +1,22 @@
-import TertiaryTitle from "./Titles/TertiaryTitle";
+import OptionButton from "./Buttons/OptionButton";
+
 const Options = () => {
   return (
     <div className="flex flex-col sm:flex-row w-full sm:items-center sm:justify-center">
-      <button className="w-full sm:w-56 bg-orange-100 rounded-xl p-3 my-2 sm:m-3">
-        <TertiaryTitle>Create Room</TertiaryTitle>
-      </button>
-      <button className="w-full sm:w-56 bg-orange-100 rounded-xl p-3 my-2 sm:m-3">
-        <TertiaryTitle>Get in Room</TertiaryTitle>
-      </button>
+      <OptionButton
+        onClick={() => {
+          alert("get in room");
+        }}
+      >
+        Create a Chat Room
+      </OptionButton>
+      <OptionButton
+        onClick={() => {
+          alert("get in room");
+        }}
+      >
+        Get in a Chat Room
+      </OptionButton>
     </div>
   );
 };

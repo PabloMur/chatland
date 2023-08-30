@@ -3,11 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     const token = await AuthController.retriveToken(request);
-    if (token) {
-      return NextResponse.json({ token: token }, { status: 200 });
-    }
-    return NextResponse.json({ error: 123 }, { status: 400 });
+    return NextResponse.json({ token: token }, { status: 200 });
   } catch (error) {
     console.error(error);
+    return NextResponse.json({ error: 123 }, { status: 400 });
   }
 }

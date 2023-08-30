@@ -25,7 +25,7 @@ const LoginForm = () => {
     setLoaderState(false);
     if (emailExists.checkEmail) goTo.push("/password");
     else {
-      alert("El email ingresado no existe");
+      goTo.push("/signup");
     }
   };
   return (

@@ -1,12 +1,22 @@
 "use client";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useState } from "react";
+import { userEmailAtom, userTokenAtom } from "@/lib/atoms/atoms";
+import { passwordsAreEqual } from "@/lib/tools";
+import { useCreateUser, useGetToken, useGoTo } from "@/app/hooks";
+import { loaderAtom } from "@/lib/atoms/uiAtoms";
 
 const SignupForm = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useRecoilState(userEmailAtom);
   const [passOne, setpassOne] = useState("");
   const [passTwo, setpassTwo] = useState("");
+  const userCreator = useCreateUser();
+  const tokenGetter = useGetToken();
+  const tokenSetter = useSetRecoilState(userTokenAtom);
+  const goTo = useGoTo();
+  const setLoaderState = useSetRecoilState(loaderAtom);
 
   const handleOnChage = (e: any) => {
     setEmail(e.target.value);
@@ -18,9 +28,20 @@ const SignupForm = () => {
     setpassTwo(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    alert(email);
+    setLoaderState(true);
+    const equalPasswords = passwordsAreEqual(passOne, passTwo);
+    if (equalPasswords) {
+      await userCreator(email, passOne);
+      const token = await tokenGetter(email, passOne);
+      tokenSetter(token.token);
+      goTo.push("/home");
+      setLoaderState(false);
+    } else {
+      alert("Las passwords no coinciden");
+      setLoaderState(false);
+    }
   };
   return (
     <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">
