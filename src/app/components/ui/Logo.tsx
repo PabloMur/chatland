@@ -13,9 +13,9 @@ const Logo = () => {
     <button
       type="button"
       onClick={handleClick}
-      className="h-24 text-orange-100 text-4xl"
+      className="h-24 text-indigo-900"
     >
-      <h2>Chatland</h2>
+      <h2 className="text-4xl">Chatland</h2>
     </button>
   );
 };

@@ -5,9 +5,9 @@ const CloseSessionButton = () => {
     router.push("/");
   };
   return (
-    <div className="h-1/4 grid place-items-center text-orange-100 text-xls m-4">
+    <div className="h-1/4 grid place-items-center">
       <button
-        className="h-auto p-3 grid place-items-center text-orange-100 text-xl border border-orange-100 rounded-xl"
+        className="h-auto p-3 grid place-items-center text-indigo-900 text-xl border border-indigo-900 rounded-full"
         onClick={handleClick}
       >
         Cerrar Sesion

@@ -1,5 +1,9 @@
 const LandingTitle = ({ children }: any) => {
-  return <h1 className="text-orange-100 text-5xl text-center">{children}</h1>;
+  return (
+    <h1 className="text-5xl text-indigo-900 bg-orange-100 shadow-custom p-5 rounded-full rounded-br-none">
+      {children}
+    </h1>
+  );
 };
 
 export default LandingTitle;

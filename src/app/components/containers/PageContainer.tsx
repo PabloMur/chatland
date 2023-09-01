@@ -1,7 +1,8 @@
-const PageContainer = ({ children }: any) => {
+const PageContainer = ({ title, children }: any) => {
   return (
-    <div className="h-screen w-full bg-indigo-950 flex flex-col items-center justify-center">
-      {children}
+    <div className="h-screen w-full  flex flex-col items-center justify-center">
+      <div>{title}</div>
+      <div className="h-full w-full">{children}</div>
     </div>
   );
 };

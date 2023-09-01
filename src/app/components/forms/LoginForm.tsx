@@ -22,10 +22,12 @@ const LoginForm = () => {
     setLoaderState(true);
     console.log(email + "login");
     const emailExists = await checkEmail(email);
-    setLoaderState(false);
-    if (emailExists.checkEmail) goTo.push("/password");
-    else {
+    if (emailExists.checkEmail) {
+      goTo.push("/password");
+      setLoaderState(false);
+    } else {
       goTo.push("/signup");
+      setLoaderState(false);
     }
   };
   return (
@@ -33,7 +35,7 @@ const LoginForm = () => {
       <SecondaryTitle>Inicia Sesion</SecondaryTitle>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center bg-white p-4 rounded-lg shadow-2xl bg-opacity-80"
+        className="flex flex-col items-center bg-white p-4 rounded-lg bg-opacity-80 shadow-custom"
       >
         <FormInput
           title="Ingresa tu email"

@@ -12,7 +12,7 @@ const MenuLi = ({ children, route }: any) => {
   return (
     <li
       onClick={handleClick}
-      className="cursor-pointer w-full h-20 grid place-items-center text-orange-100 text-xl hover:bg-orange-100 hover:text-indigo-900"
+      className="cursor-pointer w-full py-5 mt-5 grid place-items-center text-indigo-900 hover:bg-indigo-200 text-xl"
     >
       <button>{children}</button>
     </li>

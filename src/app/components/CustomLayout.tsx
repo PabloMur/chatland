@@ -4,13 +4,12 @@ import Navbar from "./Navbar";
 import { RecoilRoot } from "recoil";
 import Menu from "./Menu";
 import Sidebar from "./Sidebar";
-import { Suspense } from "react";
 import Loader from "./Loader";
 
 const LayoutMenu = ({ children }: any) => {
   return (
     <RecoilRoot>
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row bg-gradient-to-br from-green-300 via-blue-500 to-purple-600">
         <Loader />
         <Navbar />
         <Menu />
@@ -23,7 +22,7 @@ const LayoutMenu = ({ children }: any) => {
 const LayoutOnly = ({ children }: any) => {
   return (
     <RecoilRoot>
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row bg-gradient-to-br from-green-300 via-blue-500 to-purple-600">
         <Loader />
         {children}
       </div>
