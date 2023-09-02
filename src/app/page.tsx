@@ -1,7 +1,7 @@
-import LandingBanner from "@/app/components/LandingBanner";
-import CustomImageBanner from "@/app/components/CustomImageBanner";
+import LandingBanner from "@/components/LandingBanner";
+import CustomImageBanner from "@/components/CustomImageBanner";
 import landingImg from "../../public/img/landing.webp";
-import ContainerPrevFrames from "@/app/components/ContainerPrevFrames";
+import ContainerPrevFrames from "@/components/ContainerPrevFrames";
 
 export default function Home() {
   return (

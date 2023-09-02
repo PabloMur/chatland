@@ -1,7 +1,7 @@
 "use client";
 import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
-import { useCheckEmail, useGoTo } from "@/app/hooks";
+import { useCheckEmail, useGoTo } from "@/lib/hooks";
 import { userEmailAtom } from "@/lib/atoms/atoms";
 import { loaderAtom } from "@/lib/atoms/uiAtoms";
 import { useRecoilState, useSetRecoilState } from "recoil";

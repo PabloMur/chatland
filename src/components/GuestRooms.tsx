@@ -2,7 +2,7 @@
 import { userEmailAtom, userGuestRoomsAtom } from "@/lib/atoms/atoms";
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { useMyGuestRoomsIDs } from "../hooks";
+import { useMyGuestRoomsIDs } from "../lib/hooks";
 import RoomIdDisplay from "./ui/Buttons/MyRoomButton";
 
 const GuestRooms = () => {

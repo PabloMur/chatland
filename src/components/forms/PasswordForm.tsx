@@ -1,7 +1,7 @@
 "use client";
 import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
-import { useGoTo } from "@/app/hooks";
+import { useGoTo } from "@/lib/hooks";
 import { APIGetToken } from "@/lib/APICalls";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { userEmailAtom, userPasswordAtom } from "@/lib/atoms/atoms";

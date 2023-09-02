@@ -5,7 +5,7 @@ import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useState } from "react";
 import { userEmailAtom, userTokenAtom } from "@/lib/atoms/atoms";
 import { passwordsAreEqual } from "@/lib/tools";
-import { useCreateUser, useGetToken, useGoTo } from "@/app/hooks";
+import { useCreateUser, useGetToken, useGoTo } from "@/lib/hooks";
 import { loaderAtom } from "@/lib/atoms/uiAtoms";
 
 const SignupForm = () => {
