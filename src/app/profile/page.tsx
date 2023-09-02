@@ -1,12 +1,11 @@
+import ProfileContent from "../components/ProfileTabloide";
 import PageContainer from "../components/containers/PageContainer";
 import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
-import UserEmail from "../components/ui/UserEmail";
-import UserName from "../components/ui/UserName";
+
 const ProfilePage = () => {
   return (
-    <PageContainer title={<SecondaryTitle>Profile</SecondaryTitle>}>
-      <UserName />
-      <UserEmail />
+    <PageContainer title={"Profile"}>
+      <ProfileContent />
     </PageContainer>
   );
 };

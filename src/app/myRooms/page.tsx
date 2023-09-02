@@ -4,7 +4,7 @@ import PageContainer from "../components/containers/PageContainer";
 import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
 const MyRoomsPage = () => {
   return (
-    <PageContainer title={<SecondaryTitle>My Rooms</SecondaryTitle>}>
+    <PageContainer title={"My Rooms"}>
       <div className="flex flex-col sm:flex-row w-full h-full sm:h-1/2">
         <div className="flex flex-col bg-indigo-900 w-full items-center justify-evenly">
           <SecondaryTitle>Yours</SecondaryTitle>
