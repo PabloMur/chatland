@@ -1,7 +1,7 @@
 "use client";
-import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
-import Options from "../components/ui/Options";
-import PageContainer from "../components/containers/PageContainer";
+import SecondaryTitle from "@/components/ui/Titles/SecondaryTitles";
+import Options from "@/components/ui/Options";
+import PageContainer from "@/components/containers/PageContainer";
 import { useRecoilValue } from "recoil";
 import { userEmailAtom } from "@/lib/atoms/atoms";
 

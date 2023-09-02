@@ -1,9 +1,9 @@
 "use client";
-import CustomImageBanner from "@/app/components/CustomImageBanner";
-import ContainerPrevFrames from "@/app/components/ContainerPrevFrames";
-import SignupForm from "../components/forms/SignupForm";
+import CustomImageBanner from "@/components/CustomImageBanner";
+import ContainerPrevFrames from "@/components/ContainerPrevFrames";
+import SignupForm from "@/components/forms/SignupForm";
 import signupImage from "../../../public/img/landing.webp";
-import Loader from "../components/Loader";
+import Loader from "@/components/Loader";
 export default function Signup() {
   return (
     <ContainerPrevFrames>

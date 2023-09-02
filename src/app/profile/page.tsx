@@ -1,6 +1,5 @@
-import ProfileContent from "../components/ProfileTabloide";
-import PageContainer from "../components/containers/PageContainer";
-import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
+import ProfileContent from "@/components/ProfileTabloide";
+import PageContainer from "@/components/containers/PageContainer";
 
 const ProfilePage = () => {
   return (

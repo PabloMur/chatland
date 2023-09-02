@@ -1,4 +1,4 @@
-import SecondaryTitle from "../ui/Titles/SecondaryTitles";
+import SecondaryTitle from "@/components/ui/Titles/SecondaryTitles";
 
 const PageContainer = ({ title, children }: any) => {
   return (

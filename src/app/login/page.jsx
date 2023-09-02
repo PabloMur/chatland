@@ -1,7 +1,7 @@
-import CustomImageBanner from "@/app/components/CustomImageBanner";
-import ContainerPrevFrames from "@/app/components/ContainerPrevFrames";
+import CustomImageBanner from "@/components/CustomImageBanner";
+import ContainerPrevFrames from "@/components/ContainerPrevFrames";
 import loginImage from "../../../public/img/welcome.jpg";
-import LoginForm from "@/app/components/forms/LoginForm";
+import LoginForm from "@/components/forms/LoginForm";
 export default function Login() {
   return (
     <ContainerPrevFrames>

@@ -1,7 +1,7 @@
-import GuestRooms from "../components/GuestRooms";
-import UserRooms from "../components/UserRooms";
-import PageContainer from "../components/containers/PageContainer";
-import SecondaryTitle from "../components/ui/Titles/SecondaryTitles";
+import GuestRooms from "@/components/GuestRooms";
+import UserRooms from "@/components/UserRooms";
+import PageContainer from "@/components/containers/PageContainer";
+import SecondaryTitle from "@/components/ui/Titles/SecondaryTitles";
 const MyRoomsPage = () => {
   return (
     <PageContainer title={"My Rooms"}>
