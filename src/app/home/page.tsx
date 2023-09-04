@@ -4,16 +4,15 @@ import Options from "@/components/ui/Options";
 import PageContainer from "@/components/containers/PageContainer";
 import { useRecoilValue } from "recoil";
 import { userEmailAtom } from "@/lib/atoms/atoms";
+import GetInRoomModal from "@/components/modals/GetInRoom";
 
 const HomePage = () => {
   console.log(useRecoilValue(userEmailAtom));
 
   return (
-    <PageContainer>
-      <div className="w-full p-4 flex flex-col items-center justify-center">
-        <SecondaryTitle>Welcome</SecondaryTitle>
-        <Options></Options>
-      </div>
+    <PageContainer title={"Welcome"}>
+      <GetInRoomModal></GetInRoomModal>
+      <Options></Options>
     </PageContainer>
   );
 };

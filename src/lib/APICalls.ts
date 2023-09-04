@@ -56,7 +56,7 @@ export const APIGetToken = async (email: string, password: string) => {
 
 export const APICreateChatroom = async (email: string, token: string) => {
   try {
-    const fetching = await fetch(callURL + "createRoom", {
+    const fetching = await fetch(callURL + "room/create", {
       method: "POST",
       mode: "cors",
       headers: {

@@ -24,7 +24,7 @@ const PasswordForm = () => {
 
     const token = await APIGetToken(email, password);
     setLoaderState(false);
-    if (token.token) goTo.push("/home");
+    if (token.token) goTo("/home");
     else {
       alert("Contraseña incorrecta");
     }

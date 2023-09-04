@@ -1,13 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useSetRecoilState } from "recoil";
+import { useGoTo } from "@/lib/hooks";
 import { menuActive } from "@/lib/atoms/uiAtoms";
+import { useSetRecoilState } from "recoil";
 const MenuLi = ({ children, route }: any) => {
-  const router = useRouter();
   const setMenuAtom = useSetRecoilState(menuActive);
+  const goTo = useGoTo();
   const handleClick = () => {
     setMenuAtom(false);
-    router.push(route);
+    goTo(route);
   };
   return (
     <li

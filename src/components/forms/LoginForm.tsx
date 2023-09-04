@@ -14,21 +14,18 @@ const LoginForm = () => {
 
   const handleOnChage = (e: any) => {
     setEmail(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoaderState(true);
-    console.log(email + "login");
     const emailExists = await checkEmail(email);
     if (emailExists.checkEmail) {
-      goTo.push("/password");
-      setLoaderState(false);
+      goTo("/password");
     } else {
-      goTo.push("/signup");
-      setLoaderState(false);
+      goTo("/signup");
     }
+    setLoaderState(false);
   };
   return (
     <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">

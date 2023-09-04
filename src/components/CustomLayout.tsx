@@ -10,10 +10,10 @@ const LayoutMenu = ({ children }: any) => {
   return (
     <RecoilRoot>
       <div className="flex flex-col sm:flex-row bg-gradient-to-br from-green-300 via-blue-500 to-purple-600">
-        <Loader />
         <Navbar />
         <Menu />
         <Sidebar />
+        <Loader />
         {children}
       </div>
     </RecoilRoot>

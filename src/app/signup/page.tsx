@@ -7,7 +7,6 @@ import Loader from "@/components/Loader";
 export default function Signup() {
   return (
     <ContainerPrevFrames>
-      <Loader></Loader>
       <SignupForm />
       <CustomImageBanner
         imageAlt={"imagen de persona sentada de manera lateral"}

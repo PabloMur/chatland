@@ -1,6 +1,6 @@
 const RoomCode = () => {
   return (
-    <div className="h-10 w-full bg-indigo-900 text-orange-100">room code</div>
+    <div className="h-20 w-full bg-indigo-900 text-orange-100">room code</div>
   );
 };
 export default RoomCode;

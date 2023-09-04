@@ -36,7 +36,7 @@ const SignupForm = () => {
       await userCreator(email, passOne);
       const token = await tokenGetter(email, passOne);
       tokenSetter(token.token);
-      goTo.push("/home");
+      goTo("/home");
       setLoaderState(false);
     } else {
       alert("Las passwords no coinciden");

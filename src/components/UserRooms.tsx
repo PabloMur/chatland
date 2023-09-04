@@ -17,7 +17,7 @@ const UserRooms = () => {
     handleGetRooms();
   }, []);
   return (
-    <div className="w-full sm:w-1/2 grid grid-cols-3 place-items-center">
+    <div className=" h-full w-full py-3 flex gap-3 flex-wrap items-center justify-start">
       {userRooms.map((roomID: string) => (
         <RoomIdDisplay key={roomID} roomId={roomID} />
       ))}
