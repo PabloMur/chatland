@@ -7,7 +7,7 @@ const RoomIdDisplay = ({ roomId }: any) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="p-3 bg-orange-50 rounded-xl shadow-sidebar h-fit w-fit cursor-pointer"
+      className="p-4 bg-orange-50 rounded-xl shadow-sidebar h-fit w-full cursor-pointer grid place-items-center"
     >
       <TertiaryTitle>{roomId}</TertiaryTitle>
     </motion.div>
