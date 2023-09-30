@@ -19,11 +19,13 @@ const Options = () => {
   const handleCreateRoom = async () => {
     setLoader(true);
     const roomCreated = await createRoom(userEmail, userToken);
-    if (roomCreated) {
-      roomCodeSetter(roomCreated);
-      goTo(`/room/${roomCreated}`);
-      setLoader(false);
-    }
+    console.log(roomCreated);
+
+    // if (roomCreated) {
+    //   roomCodeSetter(roomCreated);
+    //   goTo(`/room/${roomCreated}`);
+    //   setLoader(false);
+    // }
   };
 
   const handleGetInRoom = () => {
