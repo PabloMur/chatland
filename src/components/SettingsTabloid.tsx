@@ -23,7 +23,7 @@ const SettingsTabloid = () => {
       <div className="backdrop-blur-3xl h-2/3 w-2/3 flex overflow-hidden rounded-3xl shadow-custom">
         <div className=" w-1/2 grid place-items-center">
           <div className="h-full w-full bg-black text-white grid place-items-center">
-            Arranca tu nueva imagen
+            Arrastra tu nueva imagen
           </div>
         </div>
         <div className="w-1/2">

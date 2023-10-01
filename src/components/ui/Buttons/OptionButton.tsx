@@ -4,7 +4,7 @@ import Image from "next/image";
 const OptionButton = ({ onClick, children, src }: any) => {
   return (
     <button
-      className="w-full bg-orange-50 h-full rounded-3xl gap-2"
+      className="w-full bg-orange-50 h-full rounded-3xl gap-2 cursor-pointer"
       onClick={onClick}
     >
       <div className="h-2/3 rounded-t-3xl overflow-hidden">

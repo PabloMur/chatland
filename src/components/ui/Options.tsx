@@ -1,7 +1,12 @@
 "use client";
-import { roomCodeAtom, userEmailAtom, userTokenAtom } from "@/lib/atoms/atoms";
+import {
+  realtimeCodeAtom,
+  roomCodeAtom,
+  userEmailAtom,
+  userTokenAtom,
+} from "@/lib/atoms/atoms";
 import OptionButton from "./Buttons/OptionButton";
-import { useCreateRoom, useGoTo } from "@/lib/hooks";
+import { useCreateRoom, useGetInRoom, useGoTo } from "@/lib/hooks";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getInRoomModal, loaderAtom } from "@/lib/atoms/uiAtoms";
 import createroom from "../../../public/img/createroom.jpg";
@@ -14,13 +19,18 @@ const Options = () => {
   const modalSetter = useSetRecoilState(getInRoomModal);
   const setLoader = useSetRecoilState(loaderAtom);
   const roomCodeSetter = useSetRecoilState(roomCodeAtom);
+  const realtimeCodeSetter = useSetRecoilState(realtimeCodeAtom);
+  const getInRoom = useGetInRoom();
   const goTo = useGoTo();
 
   const handleCreateRoom = async () => {
     setLoader(true);
     const roomCreated = await createRoom(userEmail, userToken);
+
     if (roomCreated) {
       roomCodeSetter(roomCreated);
+      const realtimeCode = await getInRoom(roomCreated);
+      realtimeCodeSetter(realtimeCode.roomId);
       goTo(`/room/${roomCreated}`);
       setLoader(false);
     }

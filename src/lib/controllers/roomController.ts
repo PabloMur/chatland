@@ -3,7 +3,6 @@ import CreateChatroomModel from "../models/ChatroomModel";
 import ChatroomModel from "../models/RoomModel";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
-import { StructuredType } from "typescript";
 
 class roomController {
   static async createChatroom(request: Request) {
