@@ -1,0 +1,46 @@
+.ownerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.owner {
+  background-color: purple;
+  max-width: 300px;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.guestContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.guest {
+  background-color: orange;
+  max-width: 300px;
+  padding: 5px;
+  border-radius: 4px;
+  color: black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

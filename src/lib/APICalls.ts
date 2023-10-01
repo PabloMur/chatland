@@ -31,7 +31,7 @@ export const APIGetToken = async (email: string, password: string) => {
       email,
       password,
     });
-    return response.data;
+    return response.data.token;
   } catch (error) {
     console.error(error);
   }
@@ -101,7 +101,7 @@ export const APISetImGuest = async (
 
 export const APISendMessage = async (message: any, token: string) => {
   try {
-    const response = await axios.put(`${baseURL}message`, message, {
+    const response = await axios.put(`${baseURL}room/sendMessage`, message, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

@@ -4,13 +4,18 @@ import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useGoTo } from "@/lib/hooks";
 import { APIGetToken } from "@/lib/APICalls";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { userEmailAtom, userPasswordAtom } from "@/lib/atoms/atoms";
+import {
+  userEmailAtom,
+  userPasswordAtom,
+  userTokenAtom,
+} from "@/lib/atoms/atoms";
 import { loaderAtom } from "@/lib/atoms/uiAtoms";
 
 const PasswordForm = () => {
   const email = useRecoilValue(userEmailAtom);
   const [password, setPassword] = useRecoilState(userPasswordAtom);
   const setLoaderState = useSetRecoilState(loaderAtom);
+  const setUserToken = useSetRecoilState(userTokenAtom);
   const goTo = useGoTo();
 
   const handleOnChage = (e: any) => {
@@ -20,12 +25,12 @@ const PasswordForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoaderState(true);
-    console.log(email);
-
     const token = await APIGetToken(email, password);
     setLoaderState(false);
-    if (token.token) goTo("/home");
-    else {
+    if (token) {
+      goTo("/home");
+      setUserToken(token);
+    } else {
       alert("Contraseña incorrecta");
     }
   };
