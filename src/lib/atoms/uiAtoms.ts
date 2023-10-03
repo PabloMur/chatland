@@ -14,3 +14,13 @@ export const getInRoomModal = atom({
   key: "getInRoomModal",
   default: false,
 });
+
+export const shareCodeMedalAtom = atom({
+  key: "shareCodeMedalAtom",
+  default: false,
+});
+
+export const deleteRoomAtom = atom({
+  key: "deleteRoomAtom",
+  default: false,
+});

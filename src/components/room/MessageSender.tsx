@@ -28,15 +28,15 @@ const MessageSender = () => {
     e.target.message.value = "";
   };
   return (
-    <div className="h-24 grid place-items-center">
+    <div className="h-32 grid place-items-center">
       <form
         onSubmit={handleSubmit}
-        className="h-full flex w-full items-center justify-center bg-indigo-900/20 gap-2"
+        className="h-full flex w-full items-center justify-center bg-orange-50 gap-2"
       >
         <div className="w-3/4">
           <FormInput name="message" type="text" />
         </div>
-        <button className="w-1/6 h-10 bg-orange-50 flex justify-center items-center rounded-lg">
+        <button className="w-1/6 h-10 flex justify-center items-center rounded-lg border border-indigo-900 shadow">
           <TertiaryTitle>Enviar</TertiaryTitle>
           <Image src={plane} alt="send message icon image" width={20}></Image>
         </button>

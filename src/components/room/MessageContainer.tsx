@@ -10,6 +10,8 @@ import MessageSender from "@/components/room/MessageSender";
 import { onValue, ref, realtimeDataBase } from "@/lib/RealtimeConn";
 import { useEffect, useRef, useState } from "react";
 import Message from "../Message";
+import ShareCodeModal from "../modals/ShareCodeModal";
+import DeleteRoomModal from "../modals/DeleteRoomModal";
 
 const MessageContainer = () => {
   const roomCode = useRecoilValue(roomCodeAtom);
@@ -45,7 +47,12 @@ const MessageContainer = () => {
   return (
     <div className="h-screen w-full  flex flex-col">
       <RoomCode roomCode={roomCode}></RoomCode>
-      <div className="h-full pt-2 overflow-y-scroll" ref={messagesContainerRef}>
+      <div
+        className="h-full relative overflow-y-scroll"
+        ref={messagesContainerRef}
+      >
+        <ShareCodeModal></ShareCodeModal>
+        <DeleteRoomModal></DeleteRoomModal>
         <ul>
           {messages.map((message: any) => {
             const messageText = message.message;

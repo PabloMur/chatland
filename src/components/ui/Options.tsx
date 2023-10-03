@@ -8,7 +8,11 @@ import {
 import OptionButton from "./Buttons/OptionButton";
 import { useCreateRoom, useGetInRoom, useGoTo } from "@/lib/hooks";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { getInRoomModal, loaderAtom } from "@/lib/atoms/uiAtoms";
+import {
+  getInRoomModal,
+  loaderAtom,
+  shareCodeMedalAtom,
+} from "@/lib/atoms/uiAtoms";
 import createroom from "../../../public/img/createroom.jpg";
 import getinroom from "../../../public/img/getinroom.jpg";
 
@@ -20,6 +24,7 @@ const Options = () => {
   const setLoader = useSetRecoilState(loaderAtom);
   const roomCodeSetter = useSetRecoilState(roomCodeAtom);
   const realtimeCodeSetter = useSetRecoilState(realtimeCodeAtom);
+  const modalNewRoomCreated = useSetRecoilState(shareCodeMedalAtom);
   const getInRoom = useGetInRoom();
   const goTo = useGoTo();
 
@@ -31,6 +36,7 @@ const Options = () => {
       roomCodeSetter(roomCreated);
       const realtimeCode = await getInRoom(roomCreated);
       realtimeCodeSetter(realtimeCode.roomId);
+      modalNewRoomCreated(true);
       goTo(`/room/${roomCreated}`);
       setLoader(false);
     }
