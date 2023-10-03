@@ -44,11 +44,13 @@ const DeleteRoomModal = () => {
               height={30}
             />
           </div>
-          <div className="h-5/6 rounded-xl grid place-items-center">
-            <TertiaryTitle>
-              Estas seguro de <strong>ELIMINAR</strong> la sala?
-            </TertiaryTitle>
-            <div className="flex w-full gap-2 px-4">
+          <div className="h-5/6 rounded-xl flex flex-col items-center justify-between">
+            <span className="w-full h-full flex justify-center items-center">
+              <TertiaryTitle>
+                Estas seguro de <strong>ELIMINAR</strong> la sala?
+              </TertiaryTitle>
+            </span>
+            <div className="flex w-full gap-4 px-2">
               <button
                 className="bg-indigo-900 w-full rounded-xl p-4 shadow-xl"
                 onClick={handleCloseModal}

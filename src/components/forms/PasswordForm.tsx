@@ -37,10 +37,7 @@ const PasswordForm = () => {
   return (
     <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">
       <SecondaryTitle>Contraseña</SecondaryTitle>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col items-center bg-white p-4 rounded-lg shadow-2xl bg-opacity-80"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <FormInput
           title="Tu contraseña"
           type="password"
@@ -49,7 +46,7 @@ const PasswordForm = () => {
           value={password}
         />
 
-        <button className="w-full bg-indigo-900 py-3 text-orange-100 rounded-lg">
+        <button className="w-full bg-indigo-900 py-3 text-orange-100 rounded-lg mt-1">
           Enviar
         </button>
       </form>
