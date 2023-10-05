@@ -16,6 +16,9 @@ import {
   APISetImGuest,
   APIUpdateUserData,
 } from "@/lib/APICalls";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { roomCodeAtom, userEmailAtom, userTokenAtom } from "../atoms/atoms";
+import { loaderAtom } from "../atoms/uiAtoms";
 
 //Room Hooks -->
 export const useGoTo = () => {
@@ -91,7 +94,8 @@ export const useUpdateUserData = () => {
 //User Hooks -->
 
 export const useMyRoomsIDs = () => {
-  return async (email: string) => {
+  const email = useRecoilValue(userEmailAtom);
+  return async () => {
     try {
       const myRooms = await APIGetRoomsIDs(email);
       return myRooms;
@@ -102,7 +106,8 @@ export const useMyRoomsIDs = () => {
 };
 
 export const useMyGuestRoomsIDs = () => {
-  return async (email: string) => {
+  const email = useRecoilValue(userEmailAtom);
+  return async () => {
     try {
       const myRooms = await APIGetGuestRoomsIDs(email);
       return myRooms;
@@ -137,9 +142,16 @@ export const useCreateRoom = () => {
 };
 
 export const useDeleteRoom = () => {
-  return async (roomId: string, token: string) => {
+  const roomCode = useRecoilValue(roomCodeAtom);
+  const token = useRecoilValue(userTokenAtom);
+  const [loader, setLoader] = useRecoilState(loaderAtom);
+  const goTo = useGoTo();
+  return async () => {
     try {
-      const deleteRoom = await APIDeleteChatroom(roomId, token);
+      setLoader(true);
+      const deleteRoom = await APIDeleteChatroom(roomCode, token);
+      goTo("/home");
+      setLoader(false);
       return deleteRoom;
     } catch (error) {
       console.error(error);

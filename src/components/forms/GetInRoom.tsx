@@ -1,18 +1,24 @@
 "use client";
 //con este modal deberia ser capaz de ingresar a una sala
 import FormInput from "../ui/FormInput";
-import { useGoTo, useGetInRoom } from "@/lib/hooks";
-import { realtimeCodeAtom, roomCodeAtom } from "@/lib/atoms/atoms";
+import { useGoTo, useGetInRoom, useAPISetImGuest } from "@/lib/hooks";
+import {
+  realtimeCodeAtom,
+  roomCodeAtom,
+  userEmailAtom,
+} from "@/lib/atoms/atoms";
 import { getInRoomModal, loaderAtom } from "@/lib/atoms/uiAtoms";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 const GetInRoom = () => {
   const [roomCode, setRoomCode] = useRecoilState(roomCodeAtom);
+  const userEmail = useRecoilValue(userEmailAtom);
   const setLoaderState = useSetRecoilState(loaderAtom);
   const setRealtimeCode = useSetRecoilState(realtimeCodeAtom);
   const getInRoom = useGetInRoom();
   const setModalGetInRoomSetter = useSetRecoilState(getInRoomModal);
   const goTo = useGoTo();
+  const setGuest = useAPISetImGuest();
 
   const handleOnChage = (e: any) => {
     setRoomCode(e.target.value);
@@ -24,6 +30,7 @@ const GetInRoom = () => {
     const response = await getInRoom(roomCode);
     if (response.roomId) {
       setRealtimeCode(response.roomId);
+      await setGuest(userEmail, response.roomId, roomCode);
       setRoomCode(roomCode);
       goTo("/room/" + roomCode);
     }
