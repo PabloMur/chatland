@@ -22,10 +22,10 @@ const RoomCode = ({ roomCode }: any) => {
   };
 
   return (
-    <div className="relative h-20 w-full bg-orange-50 flex items-center justify-between px-6">
+    <div className="relative h-20 w-full bg-orange-50 flex items-center justify-between px-6 z-20">
       <h3 className="text-indigo-900 font-bold text-xl">Room: {roomCode}</h3>
       <div
-        className="rounded-full cursor-pointer hover:bg-purple-100 p-2"
+        className="rounded-full cursor-pointer hover:bg-indigo-200 p-2"
         onClick={handleRoomMenuState}
       >
         <Image
@@ -35,19 +35,19 @@ const RoomCode = ({ roomCode }: any) => {
         />
       </div>
       {menuActive && (
-        <menu className="bg-indigo-900 absolute h-fit w-1/4 right-4  top-16 z-20 rounded-bl-xl overflow-hidden">
+        <menu className="bg-indigo-100 absolute h-fit w-1/4 right-4  top-[3.8rem] z-10 rounded-bl-xl overflow-hidden">
           <ul>
             <li
-              className="text-indigo-900 p-4 bg-orange-50 grid place-items-center hover:bg-indigo-100 cursor-pointer"
+              className="text-indigo-900 p-4 bg-orange-50 grid place-items-center hover:bg-indigo-200 cursor-pointer"
               onClick={handleDeleteRoom}
             >
               Delete Room
             </li>
             <li
-              className="text-indigo-900 p-4 bg-orange-50 grid place-items-center hover:bg-indigo-100 cursor-pointer"
+              className="text-indigo-900 p-4 bg-orange-50 grid place-items-center hover:bg-indigo-200 cursor-pointer"
               onClick={handleShareRoom}
             >
-              Compartir Room
+              Share Room
             </li>
           </ul>
         </menu>

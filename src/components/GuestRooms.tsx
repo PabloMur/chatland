@@ -1,25 +1,36 @@
 "use client";
-import { userEmailAtom, userGuestRoomsAtom } from "@/lib/atoms/atoms";
+import { userGuestRoomsAtom } from "@/lib/atoms/atoms";
+import { useMyGuestRoomsIDs } from "@/lib/hooks";
+import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useMyGuestRoomsIDs } from "../lib/hooks";
+import { useRecoilState } from "recoil";
 import RoomIdDisplay from "./ui/Buttons/MyRoomButton";
 
 const GuestRooms = () => {
-  const userEmail = useRecoilValue(userEmailAtom);
   const getMyRooms = useMyGuestRoomsIDs();
   const [guestRooms, setGuestRooms] = useRecoilState(userGuestRoomsAtom);
+
   const handleGetRooms = async () => {
-    const rooms = await getMyRooms(userEmail);
+    const rooms = await getMyRooms();
     setGuestRooms(rooms);
   };
+
   useEffect(() => {
     handleGetRooms();
   }, []);
+
   return (
-    <div className="w-full sm:w-1/2 grid grid-cols-3 place-items-center">
-      {guestRooms.map((roomID: string) => (
-        <RoomIdDisplay key={roomID} roomId={roomID} />
+    <div className="h-fit w-full py-3 grid grid-cols-4 gap-2">
+      {guestRooms.map((roomID: string, index: number) => (
+        <motion.div
+          key={roomID}
+          className="grid-item"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+        >
+          <RoomIdDisplay roomId={roomID} />
+        </motion.div>
       ))}
     </div>
   );

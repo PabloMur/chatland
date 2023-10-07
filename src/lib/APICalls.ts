@@ -88,7 +88,7 @@ export const APISetImGuest = async (
   roomId: string
 ) => {
   try {
-    const response = await axios.post(`${baseURL}guestRoom`, {
+    const response = await axios.put(`${baseURL}room/setGuest`, {
       chatroomID,
       email,
       roomId,
@@ -134,15 +134,12 @@ export const APIGetUserMe = async (email: string, token: string) => {
 
 export const APIDeleteChatroom = async (roomID: string, token: string) => {
   try {
-    const response = await axios.delete(
-      `${baseURL}deleteRoom?roomId=${roomID}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.delete(`${baseURL}room/delete/${roomID}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);

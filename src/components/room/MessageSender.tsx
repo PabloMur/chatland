@@ -36,8 +36,8 @@ const MessageSender = () => {
         <div className="w-3/4">
           <FormInput name="message" type="text" />
         </div>
-        <button className="w-1/6 h-10 flex justify-center items-center rounded-lg border border-indigo-900 shadow">
-          <TertiaryTitle>Enviar</TertiaryTitle>
+        <button className="w-1/6 h-10 flex justify-center items-center rounded-lg border border-indigo-900 shadow gap-1">
+          <TertiaryTitle>Send</TertiaryTitle>
           <Image src={plane} alt="send message icon image" width={20}></Image>
         </button>
       </form>

@@ -1,18 +1,17 @@
 "use client";
 import { motion } from "framer-motion";
-import { userEmailAtom, userRoomsAtom } from "@/lib/atoms/atoms";
+import { userRoomsAtom } from "@/lib/atoms/atoms";
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { useMyRoomsIDs } from "../lib/hooks";
 import RoomIdDisplay from "./ui/Buttons/MyRoomButton";
 
 const UserRooms = () => {
-  const userEmail = useRecoilValue(userEmailAtom);
   const getMyRooms = useMyRoomsIDs();
   const [userRooms, setUserRooms] = useRecoilState(userRoomsAtom);
 
   const handleGetRooms = async () => {
-    const rooms = await getMyRooms(userEmail);
+    const rooms = await getMyRooms();
     setUserRooms(rooms);
   };
 

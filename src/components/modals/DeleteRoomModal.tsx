@@ -1,18 +1,22 @@
 "use client";
 import { motion } from "framer-motion";
 import { deleteRoomAtom } from "@/lib/atoms/uiAtoms";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useDeleteRoom } from "@/lib/hooks";
 import cross from "../../../public/img/cross-circle-svgrepo-com.svg";
 import Image from "next/image";
 import TertiaryTitle from "../ui/Titles/TertiaryTitle";
+import { roomCodeAtom, userTokenAtom } from "@/lib/atoms/atoms";
 
 const DeleteRoomModal = () => {
   const [modalActive, setModalActive] = useRecoilState(deleteRoomAtom);
+  const deleteRoom = useDeleteRoom();
   const handleCloseModal = () => {
     setModalActive(false);
   };
-  const handleDeleteRoom = () => {
-    alert("Deleting the room");
+  const handleDeleteRoom = async () => {
+    await deleteRoom();
+    setModalActive(false);
   };
 
   const modalVariants = {

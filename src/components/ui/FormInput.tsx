@@ -20,7 +20,7 @@ const FormInput = ({
     <label className="w-full">
       <TertiaryTitle>{title}</TertiaryTitle>
       <input
-        className="h-10 w-full my-1 p-3 rounded-lg text-black bg-indigo-100 border border-indigo-300"
+        className="h-10 w-full my-1 p-3 rounded-lg text-black bg-indigo-200 border border-indigo-300"
         type={type}
         name={name}
         value={value}
