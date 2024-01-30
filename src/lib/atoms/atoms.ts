@@ -14,6 +14,11 @@ export const userEmailAtom = atom({
   default: "",
   effects_UNSTABLE: [persistAtom],
 });
+export const userImageAtom = atom({
+  key: "userImageAtom",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});
 
 export const userPasswordAtom = atom({
   key: "userPassword",

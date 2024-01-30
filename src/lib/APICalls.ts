@@ -117,7 +117,7 @@ export const APISendMessage = async (message: any, token: string) => {
 export const APIGetUserMe = async (email: string, token: string) => {
   try {
     const response = await axios.post(
-      `${baseURL}me`,
+      `${baseURL}user/me`,
       { email },
       {
         headers: {
@@ -126,6 +126,8 @@ export const APIGetUserMe = async (email: string, token: string) => {
         },
       }
     );
+    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.error(error);

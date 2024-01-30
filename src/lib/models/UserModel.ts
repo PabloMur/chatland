@@ -23,7 +23,7 @@ class UserModel {
         name: "User",
         email,
         userImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+          "https://res.cloudinary.com/fps-devs/image/upload/v1692930543/hqp8r3cx74cdlp8y3hq0.png",
       };
 
       const userRef = await firestoreDB.collection("users").add(newUser);

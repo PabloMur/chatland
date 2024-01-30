@@ -2,18 +2,20 @@
 import FormInput from "../ui/FormInput";
 import SecondaryTitle from "../ui/Titles/SecondaryTitles";
 import { useGoTo } from "@/lib/hooks";
-import { APIGetToken } from "@/lib/APICalls";
+import { APIGetToken, APIGetUserMe } from "@/lib/APICalls";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   userEmailAtom,
+  userImageAtom,
   userPasswordAtom,
   userTokenAtom,
 } from "@/lib/atoms/atoms";
 import { loaderAtom } from "@/lib/atoms/uiAtoms";
 
-const PasswordForm = () => {
+export default function PasswordForm() {
   const email = useRecoilValue(userEmailAtom);
   const [password, setPassword] = useRecoilState(userPasswordAtom);
+  const imageSetter = useSetRecoilState(userImageAtom);
   const setLoaderState = useSetRecoilState(loaderAtom);
   const setUserToken = useSetRecoilState(userTokenAtom);
   const goTo = useGoTo();
@@ -28,14 +30,16 @@ const PasswordForm = () => {
     const token = await APIGetToken(email, password);
     setLoaderState(false);
     if (token) {
+      const userData = await APIGetUserMe(email, token);
       goTo("/home");
       setUserToken(token);
+      imageSetter(userData.userData.userImage);
     } else {
       alert("Contraseña incorrecta");
     }
   };
   return (
-    <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10">
+    <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10 bg-red-600">
       <SecondaryTitle>Contraseña</SecondaryTitle>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <FormInput
@@ -52,5 +56,4 @@ const PasswordForm = () => {
       </form>
     </div>
   );
-};
-export default PasswordForm;
+}
