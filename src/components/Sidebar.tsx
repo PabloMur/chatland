@@ -9,7 +9,6 @@ const Sidebar = () => {
     { route: "/home", text: "Home" },
     { route: "/my-rooms", text: "My Rooms" },
     { route: "/profile", text: "Profile" },
-    { route: "/settings", text: "Settings" },
   ];
 
   const menuVariants = {

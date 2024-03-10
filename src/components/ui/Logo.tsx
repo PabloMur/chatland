@@ -10,12 +10,8 @@ const Logo = () => {
     router.push("/home");
   };
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      className="h-24 text-indigo-900"
-    >
-      <h2 className="text-4xl">Chatland</h2>
+    <button type="button" onClick={handleClick} className="h-24 ">
+      <h2 className="text-4xl sm:text-indigo-900 text-white">Chatland</h2>
     </button>
   );
 };

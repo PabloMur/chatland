@@ -39,9 +39,12 @@ export default function PasswordForm() {
     }
   };
   return (
-    <div className="w-full sm:w-1/2 h-screen flex flex-col items-center justify-center z-10 bg-red-600">
+    <div className="w-full sm:w-1/2 h-[90vh] flex flex-col items-center justify-center z-10">
       <SecondaryTitle>Contraseña</SecondaryTitle>
-      <form onSubmit={handleSubmit} className="flex flex-col items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center w-full"
+      >
         <FormInput
           title="Tu contraseña"
           type="password"

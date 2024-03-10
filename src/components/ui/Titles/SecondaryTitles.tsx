@@ -9,7 +9,7 @@ const SecondaryTitle = ({ children }: any) => {
       transition={{ duration: 1 }}
       className="box"
     >
-      <h3 className="text-green-600 text-5xl m-5 font-extrabold">{children}</h3>
+      <h3 className="text-white text-5xl m-5 font-extrabold">{children}</h3>
     </motion.div>
   );
 };
