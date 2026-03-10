@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, { params }: any) {
   try {
-    const { email } = params;
+    const { email } = await params;
     const querySnapshot = await firestoreDB
       .collection("rooms")
       .where("createdBy", "==", email)

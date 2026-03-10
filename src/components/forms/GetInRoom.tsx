@@ -1,22 +1,18 @@
 "use client";
-//con este modal deberia ser capaz de ingresar a una sala
 import FormInput from "../ui/FormInput";
 import { useGoTo, useGetInRoom, useAPISetImGuest } from "@/lib/hooks";
-import {
-  realtimeCodeAtom,
-  roomCodeAtom,
-  userEmailAtom,
-} from "@/lib/atoms/atoms";
-import { getInRoomModal, loaderAtom } from "@/lib/atoms/uiAtoms";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useUserStore } from "@/lib/stores/userStore";
+import { useRoomStore } from "@/lib/stores/roomStore";
+import { useUIStore } from "@/lib/stores/uiStore";
 
 const GetInRoom = () => {
-  const [roomCode, setRoomCode] = useRecoilState(roomCodeAtom);
-  const userEmail = useRecoilValue(userEmailAtom);
-  const setLoaderState = useSetRecoilState(loaderAtom);
-  const setRealtimeCode = useSetRecoilState(realtimeCodeAtom);
+  const roomCode = useRoomStore((s) => s.roomCode);
+  const setRoomCode = useRoomStore((s) => s.setRoomCode);
+  const setRealtimeCode = useRoomStore((s) => s.setRealtimeCode);
+  const userEmail = useUserStore((s) => s.userEmail);
+  const setLoaderState = useUIStore((s) => s.setLoader);
+  const setModalGetInRoomSetter = useUIStore((s) => s.setGetInRoomModal);
   const getInRoom = useGetInRoom();
-  const setModalGetInRoomSetter = useSetRecoilState(getInRoomModal);
   const goTo = useGoTo();
   const setGuest = useAPISetImGuest();
 
@@ -41,21 +37,23 @@ const GetInRoom = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full h-full flex flex-col items-center p-4 rounded-lg bg-opacity-80 justify-center"
+      className="w-full flex flex-col items-center"
     >
-      <div className="w-3/5">
+      <div className="w-full mb-5">
+        <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+          Pedile el código a quien creó la sala e ingresalo acá
+        </p>
         <FormInput
-          title="Ingresa el codigo de la sala"
+          title="Código de sala"
           type="text"
           name="roomCode"
           onChange={handleOnChage}
-          placeholder="- - - - -"
+          placeholder="ej: 12345"
         />
-
-        <button className="w-full bg-indigo-900 py-3 text-orange-100 rounded-lg">
-          Ingresar
-        </button>
       </div>
+      <button type="submit" className="btn-primary">
+        Unirse a la sala
+      </button>
     </form>
   );
 };

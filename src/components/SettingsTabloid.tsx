@@ -1,11 +1,12 @@
 "use client";
-import { useRecoilState } from "recoil";
+import { useUserStore } from "@/lib/stores/userStore";
 import FormInput from "./ui/FormInput";
-import { userEmailAtom, userNameAtom } from "@/lib/atoms/atoms";
 //import Image from "next/image";
 const SettingsTabloid = () => {
-  const [email, setEmail] = useRecoilState(userEmailAtom);
-  const [name, setName] = useRecoilState(userNameAtom);
+  const email = useUserStore((s) => s.userEmail);
+  const setEmail = useUserStore((s) => s.setUserEmail);
+  const name = useUserStore((s) => s.userName);
+  const setName = useUserStore((s) => s.setUserName);
 
   const handleChangeEmail = (e: any) => {
     setEmail(e.target.value);

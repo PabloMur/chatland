@@ -148,6 +148,14 @@ export const APIDeleteChatroom = async (roomID: string, token: string) => {
   }
 };
 
+export const APILogout = async () => {
+  try {
+    await axios.post(`${baseURL}auth/logout`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const APIDeleteAccount = async (token: string) => {
   try {
     const response = await axios.delete(`${baseURL}deleteAccount`, {

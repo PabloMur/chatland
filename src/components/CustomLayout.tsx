@@ -1,32 +1,30 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
-import { RecoilRoot } from "recoil";
 import Menu from "./Menu";
 import Sidebar from "./Sidebar";
 import Loader from "./Loader";
 
 const LayoutMenu = ({ children }: any) => {
   return (
-    <RecoilRoot>
-      <div className="flex flex-col sm:flex-row bg-gradient-to-br from-green-300 via-blue-500 to-purple-600">
-        <Navbar />
-        <Menu />
-        <Sidebar />
-        <Loader />
+    <div className="flex flex-col sm:flex-row min-h-screen" style={{ background: "#0a0a0f" }}>
+      <Navbar />
+      <Menu />
+      <Sidebar />
+      <Loader />
+      <div className="flex-1 sm:ml-0">
         {children}
       </div>
-    </RecoilRoot>
+    </div>
   );
 };
+
 const LayoutOnly = ({ children }: any) => {
   return (
-    <RecoilRoot>
-      <div className="flex flex-col sm:flex-row bg-gradient-to-br from-green-300 via-blue-500 to-purple-600">
-        <Loader />
-        {children}
-      </div>
-    </RecoilRoot>
+    <div className="min-h-screen" style={{ background: "#0a0a0f" }}>
+      <Loader />
+      {children}
+    </div>
   );
 };
 

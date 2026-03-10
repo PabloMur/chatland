@@ -1,13 +1,13 @@
-import { closeSessionModalAtom } from "@/lib/atoms/uiAtoms";
-import { useRecoilState } from "recoil";
+"use client";
+import { useState } from "react";
 
 export default function CloseSessionModal() {
-  const [modalActive, setModalActive] = useRecoilState(closeSessionModalAtom);
+  const [modalActive, setModalActive] = useState(false);
   const handleClosSession = () => {
     alert("Cerrando Sesion");
   };
   const handleCancelCloseSesion = () => {
-    setModalActive(modalActive);
+    setModalActive(false);
   };
   return (
     modalActive && (

@@ -50,8 +50,8 @@ class AuthModel {
 
       if (!passwordMatch) return { error: "Invalid email or password" };
 
-      // Generar el token JWT
-      const token = jwt.sign({ email }, secret);
+      // Generar el token JWT con expiración de 7 días
+      const token = jwt.sign({ email }, secret, { expiresIn: "7d" });
       return token;
     } catch (error) {
       console.error(error);

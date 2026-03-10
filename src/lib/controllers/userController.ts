@@ -15,7 +15,7 @@ class UserController {
   }
   static async getUserData(req: NextRequest) {
     try {
-      const authorization = headers().get("authorization");
+      const authorization = (await headers()).get("authorization");
       const { email } = await req.json();
       if (!authorization) return { error: "Missing authorization token" };
 
@@ -36,7 +36,7 @@ class UserController {
   }
   static async updateUserData(request: NextRequest) {
     try {
-      const headersList = headers();
+      const headersList = await headers();
       const authorizationRef = headersList.get("authorization");
       const { newData, email } = await request.json();
 
@@ -58,7 +58,7 @@ class UserController {
   }
   static async deleteAccount(req: NextRequest) {
     try {
-      const headersList = headers();
+      const headersList = await headers();
       const authorizationRef = headersList.get("authorization");
       if (!authorizationRef) return { error: "Missing authorization token" };
 

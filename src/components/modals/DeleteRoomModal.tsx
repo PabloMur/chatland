@@ -1,77 +1,75 @@
 "use client";
-import { motion } from "framer-motion";
-import { deleteRoomAtom } from "@/lib/atoms/uiAtoms";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { motion, AnimatePresence } from "framer-motion";
+import { useUIStore } from "@/lib/stores/uiStore";
 import { useDeleteRoom } from "@/lib/hooks";
-import cross from "../../../public/img/cross-circle-svgrepo-com.svg";
-import Image from "next/image";
-import TertiaryTitle from "../ui/Titles/TertiaryTitle";
-import { roomCodeAtom, userTokenAtom } from "@/lib/atoms/atoms";
 
 const DeleteRoomModal = () => {
-  const [modalActive, setModalActive] = useRecoilState(deleteRoomAtom);
+  const modalActive = useUIStore((s) => s.deleteRoomModal);
+  const setModalActive = useUIStore((s) => s.setDeleteRoomModal);
   const deleteRoom = useDeleteRoom();
-  const handleCloseModal = () => {
-    setModalActive(false);
-  };
+
+  const handleCloseModal = () => setModalActive(false);
   const handleDeleteRoom = async () => {
     await deleteRoom();
     setModalActive(false);
   };
 
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 },
-  };
-
   return (
-    modalActive && (
-      <motion.div
-        className="h-full w-full absolute backdrop-blur z-10 grid place-items-center top-0"
-        initial="hidden"
-        animate="visible"
-        variants={modalVariants}
-      >
+    <AnimatePresence>
+      {modalActive && (
         <motion.div
-          className="bg-orange-50 h-1/2 w-1/2 rounded-xl shadow-xl p-3"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className="absolute inset-0 z-20 flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(12px)" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleCloseModal}
         >
-          <div
-            className="rounded-xl flex justify-end pr-3 cursor-pointer  h-1/6"
-            onClick={handleCloseModal}
+          <motion.div
+            className="relative w-full max-w-sm mx-4 p-7 rounded-2xl"
+            style={{
+              background: "rgba(26,26,36,0.97)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+            }}
+            initial={{ opacity: 0, scale: 0.9, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 16 }}
+            transition={{ type: "spring", damping: 20, stiffness: 200 }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={cross}
-              alt="imagen de cruz para cerrar el modal"
-              width={30}
-              height={30}
-            />
-          </div>
-          <div className="h-5/6 rounded-xl flex flex-col items-center justify-between">
-            <span className="w-full h-full flex justify-center items-center">
-              <TertiaryTitle>
-                Estas seguro de <strong>ELIMINAR</strong> la sala?
-              </TertiaryTitle>
-            </span>
-            <div className="flex w-full gap-4 px-2">
-              <button
-                className="bg-indigo-900 w-full rounded-xl p-4 shadow-xl"
-                onClick={handleCloseModal}
-              >
+            {/* Icon */}
+            <div
+              className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+              style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444" }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                <line x1="10" y1="11" x2="10" y2="17"/>
+                <line x1="14" y1="11" x2="14" y2="17"/>
+              </svg>
+            </div>
+
+            <h2 className="text-xl font-bold mb-2" style={{ color: "#f4f4f8" }}>
+              Eliminar sala
+            </h2>
+            <p className="text-sm mb-7" style={{ color: "rgba(255,255,255,0.45)" }}>
+              Esta acción es permanente. Todos los mensajes serán eliminados y los participantes perderán acceso.
+            </p>
+
+            <div className="flex flex-col gap-3">
+              <button className="btn-danger" onClick={handleDeleteRoom}>
+                Sí, eliminar sala
+              </button>
+              <button className="btn-ghost" onClick={handleCloseModal}>
                 Cancelar
               </button>
-              <button
-                className="bg-red-600 w-full rounded-xl p-4 shadow-xl"
-                onClick={handleDeleteRoom}
-              >
-                Eliminar
-              </button>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    )
+      )}
+    </AnimatePresence>
   );
 };
 

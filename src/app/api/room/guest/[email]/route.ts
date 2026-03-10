@@ -4,7 +4,7 @@ import { firestoreDB } from "@/lib/FirestoreConn";
 //Tarea: Hacer que esto suceda mediante un controller
 export async function GET(request: NextRequest, { params }: any) {
   try {
-    const { email } = params;
+    const { email } = await params;
     const querySnapshot = await firestoreDB
       .collection("rooms")
       .where("guest", "==", email)

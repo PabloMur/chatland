@@ -25,7 +25,3 @@ export const deleteRoomAtom = atom({
   default: false,
 });
 
-export const closeSessionModalAtom = atom({
-  key: "deleteRoomAtom",
-  default: false,
-});

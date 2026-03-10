@@ -16,9 +16,9 @@ import {
   APISetImGuest,
   APIUpdateUserData,
 } from "@/lib/APICalls";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { roomCodeAtom, userEmailAtom, userTokenAtom } from "../atoms/atoms";
-import { loaderAtom } from "../atoms/uiAtoms";
+import { useUserStore } from "@/lib/stores/userStore";
+import { useRoomStore } from "@/lib/stores/roomStore";
+import { useUIStore } from "@/lib/stores/uiStore";
 
 //Room Hooks -->
 export const useGoTo = () => {
@@ -94,7 +94,7 @@ export const useUpdateUserData = () => {
 //User Hooks -->
 
 export const useMyRoomsIDs = () => {
-  const email = useRecoilValue(userEmailAtom);
+  const email = useUserStore((s) => s.userEmail);
   return async () => {
     try {
       const myRooms = await APIGetRoomsIDs(email);
@@ -106,7 +106,7 @@ export const useMyRoomsIDs = () => {
 };
 
 export const useMyGuestRoomsIDs = () => {
-  const email = useRecoilValue(userEmailAtom);
+  const email = useUserStore((s) => s.userEmail);
   return async () => {
     try {
       const myRooms = await APIGetGuestRoomsIDs(email);
@@ -142,9 +142,9 @@ export const useCreateRoom = () => {
 };
 
 export const useDeleteRoom = () => {
-  const roomCode = useRecoilValue(roomCodeAtom);
-  const token = useRecoilValue(userTokenAtom);
-  const [loader, setLoader] = useRecoilState(loaderAtom);
+  const roomCode = useRoomStore((s) => s.roomCode);
+  const token = useUserStore((s) => s.userToken);
+  const setLoader = useUIStore((s) => s.setLoader);
   const goTo = useGoTo();
   return async () => {
     try {

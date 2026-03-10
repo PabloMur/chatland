@@ -6,9 +6,15 @@ interface MessageProps {
 
 const Owner: React.FC<{ text: string }> = ({ text }) => {
   return (
-    <div className="p-1 pr-3 flex justify-end">
-      <div className="bg-orange-50 max-w-sm p-3 rounded-3xl rounded-br-none shadow-3xl">
-        <p className="text-indigo-900">{text}</p>
+    <div className="flex justify-end px-4 py-1">
+      <div
+        className="max-w-xs sm:max-w-sm px-4 py-2.5 rounded-2xl rounded-br-md"
+        style={{
+          background: "linear-gradient(135deg, #a855f7, #7c3aed)",
+          boxShadow: "0 2px 12px rgba(168,85,247,0.25)",
+        }}
+      >
+        <p className="text-sm leading-relaxed text-white">{text}</p>
       </div>
     </div>
   );
@@ -16,15 +22,21 @@ const Owner: React.FC<{ text: string }> = ({ text }) => {
 
 const Guest: React.FC<{ text: string }> = ({ text }) => {
   return (
-    <div className="p-1 pl-3 flex justify-start">
-      <div className="bg-indigo-900 w-fit p-3 rounded-full rounded-bl-none shadow-3xl">
-        <p className="text-orange-50">{text}</p>
+    <div className="flex justify-start px-4 py-1">
+      <div
+        className="max-w-xs sm:max-w-sm px-4 py-2.5 rounded-2xl rounded-bl-md"
+        style={{
+          background: "rgba(255,255,255,0.07)",
+          border: "1px solid rgba(255,255,255,0.08)",
+        }}
+      >
+        <p className="text-sm leading-relaxed" style={{ color: "#f4f4f8" }}>{text}</p>
       </div>
     </div>
   );
 };
 
-const Message: React.FC<MessageProps> = ({ text, isOwner, isNew }) => {
+const Message: React.FC<MessageProps> = ({ text, isOwner }) => {
   return isOwner ? <Owner text={text} /> : <Guest text={text} />;
 };
 

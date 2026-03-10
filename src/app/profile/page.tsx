@@ -3,7 +3,7 @@ import PageContainer from "@/components/containers/PageContainer";
 
 const ProfilePage = () => {
   return (
-    <PageContainer title={"Profile"}>
+    <PageContainer title="Perfil">
       <ProfileContent />
     </PageContainer>
   );

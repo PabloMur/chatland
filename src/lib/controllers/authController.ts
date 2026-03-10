@@ -15,7 +15,7 @@ class AuthController {
   }
   static async deleteAuth(req: NextRequest) {
     try {
-      const headersList = headers();
+      const headersList = await headers();
       const authorizationRef = headersList.get("authorization");
       if (!authorizationRef) {
         return { error: "Missing authorization token" };

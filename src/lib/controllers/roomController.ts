@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 class roomController {
   static async createChatroom(request: Request) {
-    const headersList = headers();
+    const headersList = await headers();
     const authorizationRef = headersList.get("authorization");
     if (!authorizationRef) {
       return { error: "Missing authorization token" };
@@ -25,7 +25,7 @@ class roomController {
   }
 
   static async deleteRoom(request: NextRequest, roomId: string) {
-    const headersList = headers();
+    const headersList = await headers();
     const authorizationRef = headersList.get("authorization");
     if (!authorizationRef) {
       return { error: "Missing authorization token" };
