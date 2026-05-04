@@ -6,6 +6,6 @@ export async function POST(request: NextRequest) {
     const auth = await AuthController.createAuth(request);
     return NextResponse.json({ authCreated: auth }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error }, { status: 400 });
+    return NextResponse.json({ error: "Error al crear autenticación" }, { status: 400 });
   }
 }

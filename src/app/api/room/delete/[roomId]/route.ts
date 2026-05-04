@@ -1,16 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import roomController from "@/lib/controllers/roomController";
-//Falta que tambien se elimine en la realtime
+import RoomController from "@/lib/controllers/roomController";
+
 export async function DELETE(request: NextRequest, { params }: any) {
   try {
     const { roomId } = await params;
-    const deletedRoomId = await roomController.deleteRoom(
-      request,
-      roomId
-    );
-    return NextResponse.json({ roomDeleted: deletedRoomId }, { status: 200 });
+    const result = await RoomController.deleteRoom(request, roomId);
+
+    if (result && "error" in result) {
+      const status = result.error === "Not authorized to delete this room" ? 403 : 400;
+      return NextResponse.json({ error: result.error }, { status });
+    }
+
+    return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
+    console.error("[DELETE /room/delete]", error);
+    return NextResponse.json({ error: "Error al eliminar la sala" }, { status: 500 });
   }
 }

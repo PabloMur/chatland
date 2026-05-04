@@ -19,7 +19,7 @@ vi.mock("firebase-admin", () => ({
   },
 }));
 
-vi.mock("bcrypt", () => ({
+vi.mock("bcryptjs", () => ({
   default: { hash: vi.fn().mockResolvedValue("new_hashed_pw") },
 }));
 

@@ -7,6 +7,6 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ userupdated }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
+    return NextResponse.json({ error: "Error al actualizar usuario" }, { status: 400 });
   }
 }

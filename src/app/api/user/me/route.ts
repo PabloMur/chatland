@@ -7,6 +7,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ userData }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
+    return NextResponse.json({ error: "Error al obtener usuario" }, { status: 400 });
   }
 }

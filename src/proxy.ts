@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 const PROTECTED = ["/home", "/my-rooms", "/profile", "/room"];
 const PUBLIC = ["/", "/login", "/signup", "/password", "/forgot-password", "/reset-password"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isProtected = PROTECTED.some((r) => pathname.startsWith(r));

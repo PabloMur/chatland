@@ -1,30 +1,61 @@
 import { realtimeDB } from "@/lib/FirestoreConn";
 import { NextRequest, NextResponse } from "next/server";
+import jwt from "jsonwebtoken";
+
+const MAX_MESSAGES = 200;
 
 type Message = {
   from: "owner" | "guest";
   message: string;
 };
+
 export async function PUT(request: NextRequest) {
   try {
-    const { roomId, message, from } = await request.json();
-    // Obtener la referencia a la chatroom en Realtime Database
+    const authorization = request.headers.get("authorization");
+    if (!authorization) {
+      return NextResponse.json({ error: "Missing authorization token" }, { status: 401 });
+    }
+
+    const token = authorization.replace("Bearer ", "");
+    const secret = process.env.SECRET_KEY as string;
+    const decoded = jwt.verify(token, secret) as { email: string };
+
+    const { roomId, message } = await request.json();
+
+    if (!roomId || !message || typeof message !== "string" || message.trim() === "") {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
     const roomRef = realtimeDB.ref(`rooms/${roomId}`);
-    // Obtener los mensajes existentes en la chatroom
     const snapshot = await roomRef.get();
-    const existingMessages: Message[] = snapshot.val()?.messages || [];
-    // Crear el nuevo mensaje con guest en null por ahora
-    const newMessage: Message = {
-      from,
-      message,
-    };
-    // Actualizar los mensajes en la chatroom agregando el nuevo mensaje
-    await roomRef.update({
-      messages: [...existingMessages, newMessage],
-    });
-    return NextResponse.json({ success: true }, { status: 200 });
+    const roomData = snapshot.val();
+
+    if (!roomData) {
+      return NextResponse.json({ error: "Room not found" }, { status: 404 });
+    }
+
+    // Derivar el rol desde el token — el cliente no puede declararlo
+    const { createdBy, guest } = roomData;
+    let from: "owner" | "guest";
+    if (decoded.email === createdBy) {
+      from = "owner";
+    } else if (decoded.email === guest) {
+      from = "guest";
+    } else {
+      return NextResponse.json({ error: "Not a member of this room" }, { status: 403 });
+    }
+
+    const existingMessages: Message[] = roomData.messages || [];
+    const newMessage: Message = { from, message: message.trim() };
+
+    // Mantener solo los últimos MAX_MESSAGES para no superar el límite de Realtime DB
+    const updatedMessages = [...existingMessages, newMessage].slice(-MAX_MESSAGES);
+
+    await roomRef.update({ messages: updatedMessages });
+
+    return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
+    console.error("[sendMessage]", error);
+    return NextResponse.json({ error: "Error al enviar el mensaje" }, { status: 500 });
   }
 }

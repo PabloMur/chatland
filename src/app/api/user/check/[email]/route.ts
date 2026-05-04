@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import UserController from "@/lib/controllers/userController";
+
 export async function GET(request: NextRequest, { params }: any) {
   try {
     const { email } = await params;
-    const checkEmail = await UserController.checkEmail(email);
+    const checkEmail = await UserController.checkEmail(decodeURIComponent(email));
     return NextResponse.json({ checkEmail }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
+    return NextResponse.json({ error: "Error al verificar email" }, { status: 400 });
   }
 }

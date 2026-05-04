@@ -4,7 +4,7 @@ vi.mock("jose", () => ({
   jwtVerify: vi.fn(),
 }));
 
-import { middleware } from "@/middleware";
+import { proxy as middleware } from "@/proxy";
 import { jwtVerify } from "jose";
 
 // Helper: simulate a NextRequest-like object

@@ -57,7 +57,7 @@ class PasswordResetModel {
     }
 
     // Actualizar contraseña en colección "auth"
-    const bcrypt = (await import("bcrypt")).default;
+    const bcrypt = (await import("bcryptjs")).default;
     const hashed = await bcrypt.hash(newPassword, 10);
 
     const authSnap = await firestoreDB

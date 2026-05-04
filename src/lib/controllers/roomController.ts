@@ -1,60 +1,31 @@
-import { headers } from "next/headers";
 import CreateChatroomModel from "../models/ChatroomModel";
-import ChatroomModel from "../models/RoomModel";
-import jwt from "jsonwebtoken";
-import { NextRequest, NextResponse } from "next/server";
+import RoomModel from "../models/RoomModel";
+import { verifyToken } from "@/lib/auth/verifyToken";
+import { NextRequest } from "next/server";
 
-class roomController {
+class RoomController {
   static async createChatroom(request: Request) {
-    const headersList = await headers();
-    const authorizationRef = headersList.get("authorization");
-    if (!authorizationRef) {
-      return { error: "Missing authorization token" };
-    }
-    const token = authorizationRef?.replace("Bearer ", "");
-    if (!token) {
-      return { error: "Missing authorization token" };
-    }
-
     try {
+      const decoded = await verifyToken();
+      // ChatroomModel necesita el token raw para verificarlo internamente
+      const authorization = (request as any).headers.get("authorization") as string;
+      const token = authorization.replace("Bearer ", "");
       const roomId = await CreateChatroomModel.createChatroom(token);
       return roomId;
     } catch (error) {
-      return { error };
+      return { error: "An error occurred" };
     }
   }
 
-  static async deleteRoom(request: NextRequest, roomId: string) {
-    const headersList = await headers();
-    const authorizationRef = headersList.get("authorization");
-    if (!authorizationRef) {
-      return { error: "Missing authorization token" };
-    }
-    const token = authorizationRef?.replace("Bearer ", "");
-    if (!token) {
-      return { error: "Missing authorization token" };
-    }
-    const secret = process.env.SECRET_KEY as any;
-    if (!token) {
-      return NextResponse.json(
-        { error: "Missing authorization token" },
-        { status: 401 }
-      );
-    }
-
+  static async deleteRoom(_request: NextRequest, roomId: string) {
     try {
-      const decodedToken = jwt.verify(token, secret);
-      if (decodedToken) {
-        const deletRoom = await ChatroomModel.deleteRoom(roomId);
-        return { decodedToken, deletRoom };
-      } else {
-        return null;
-      }
+      const decoded = await verifyToken();
+      return await RoomModel.deleteRoom(roomId, decoded.email);
     } catch (error) {
-      console.error(error);
-      return NextResponse.json({ error: error }, { status: 401 });
+      console.error("[RoomController] deleteRoom:", error);
+      return { error: "Unauthorized" };
     }
   }
 }
 
-export default roomController;
+export default RoomController;

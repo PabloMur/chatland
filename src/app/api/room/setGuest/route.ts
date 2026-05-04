@@ -1,23 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { firestoreDB, realtimeDB } from "@/lib/FirestoreConn";
-//Endpoint para setear que soy guest en una room
-//Tarea: Hacer que esto funcione con un controller
+
 export async function PUT(request: NextRequest) {
   try {
     const { chatroomID, email, roomId } = await request.json();
-    const ref = realtimeDB.ref(`rooms/${chatroomID}`);
-    const firestoreRef = firestoreDB.collection("rooms").doc(roomId);
-    const prevData = firestoreRef.get();
-    await ref.update({
-      guest: email,
-    });
-    const guestSetted = await firestoreRef.update({
-      ...prevData,
-      guest: email,
-    });
-    return NextResponse.json({ guestSetted });
+
+    if (!chatroomID || !email || !roomId) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    await Promise.all([
+      realtimeDB.ref(`rooms/${chatroomID}`).update({ guest: email }),
+      firestoreDB.collection("rooms").doc(roomId).update({ guest: email }),
+    ]);
+
+    return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error }, { status: 400 });
+    console.error("[setGuest]", error);
+    return NextResponse.json({ error: "Error al unirse a la sala" }, { status: 400 });
   }
 }

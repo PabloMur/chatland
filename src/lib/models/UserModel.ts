@@ -1,6 +1,6 @@
 import { firestoreDB } from "@/lib/FirestoreConn";
 import { cloudinary } from "@/lib/CloudinaryConn";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 class UserModel {
   static async createMe(email: string, password: string) {
     try {
@@ -23,7 +23,7 @@ class UserModel {
         name: "User",
         email,
         userImage:
-          "https://res.cloudinary.com/fps-devs/image/upload/v1692930543/hqp8r3cx74cdlp8y3hq0.png",
+          process.env.DEFAULT_USER_IMAGE ?? "https://res.cloudinary.com/fps-devs/image/upload/v1692930543/hqp8r3cx74cdlp8y3hq0.png",
       };
 
       const userRef = await firestoreDB.collection("users").add(newUser);

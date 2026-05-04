@@ -25,16 +25,28 @@ export default function PasswordForm() {
     e.preventDefault();
     setError("");
     setLoaderState(true);
+
     const token = await APIGetToken(email, password);
-    setLoaderState(false);
-    if (token) {
-      const userData = await APIGetUserMe(email, token);
-      setUserToken(token);
-      setUserImage(userData.userData.userImage);
-      goTo("/home");
-    } else {
+
+    if (!token) {
+      setLoaderState(false);
       setError("Contraseña incorrecta. Intentá de nuevo.");
+      return;
     }
+
+    setUserToken(token);
+
+    const userData = await APIGetUserMe(email, token);
+
+    setLoaderState(false);
+
+    if (!userData?.userData?.userImage) {
+      goTo("/home");
+      return;
+    }
+
+    setUserImage(userData.userData.userImage);
+    goTo("/home");
   };
 
   return (

@@ -4,7 +4,7 @@ vi.mock("@/lib/FirestoreConn", () => ({
   firestoreDB: { collection: vi.fn() },
 }));
 
-vi.mock("bcrypt", () => ({
+vi.mock("bcryptjs", () => ({
   default: { hash: vi.fn(), compare: vi.fn() },
 }));
 
@@ -14,7 +14,7 @@ vi.mock("jsonwebtoken", () => ({
 
 import AuthModel from "@/lib/models/AuthModel";
 import { firestoreDB } from "@/lib/FirestoreConn";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 describe("AuthModel", () => {
@@ -78,8 +78,8 @@ describe("AuthModel", () => {
     });
   });
 
-  // ── creatToken ────────────────────────────────────────────────────────────
-  describe("creatToken", () => {
+  // ── createToken ───────────────────────────────────────────────────────────
+  describe("createToken", () => {
     it("returns a signed JWT when credentials are correct", async () => {
       const mockGet = vi.fn().mockResolvedValue({
         empty: false,
@@ -90,7 +90,7 @@ describe("AuthModel", () => {
       (bcrypt.compare as any).mockResolvedValue(true);
       (jwt.sign as any).mockReturnValue("signed-token");
 
-      const result = await AuthModel.creatToken("user@test.com", "pass123");
+      const result = await AuthModel.createToken("user@test.com", "pass123");
 
       expect(bcrypt.compare).toHaveBeenCalledWith("pass123", "hashed_pw");
       expect(jwt.sign).toHaveBeenCalledWith(
@@ -106,7 +106,7 @@ describe("AuthModel", () => {
       const mockWhere = vi.fn().mockReturnValue({ get: mockGet });
       (firestoreDB.collection as any).mockReturnValue({ where: mockWhere });
 
-      const result = await AuthModel.creatToken("ghost@test.com", "pass");
+      const result = await AuthModel.createToken("ghost@test.com", "pass");
 
       expect(result).toEqual({ error: "Invalid email or password" });
     });
@@ -120,7 +120,7 @@ describe("AuthModel", () => {
       (firestoreDB.collection as any).mockReturnValue({ where: mockWhere });
       (bcrypt.compare as any).mockResolvedValue(false);
 
-      const result = await AuthModel.creatToken("user@test.com", "wrongpass");
+      const result = await AuthModel.createToken("user@test.com", "wrongpass");
 
       expect(result).toEqual({ error: "Invalid email or password" });
     });
@@ -131,7 +131,7 @@ describe("AuthModel", () => {
       });
       (firestoreDB.collection as any).mockReturnValue({ where: mockWhere });
 
-      const result = await AuthModel.creatToken("user@test.com", "pass");
+      const result = await AuthModel.createToken("user@test.com", "pass");
 
       expect(result).toMatchObject({ error: expect.any(String) });
     });

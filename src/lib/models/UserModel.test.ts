@@ -8,13 +8,13 @@ vi.mock("@/lib/CloudinaryConn", () => ({
   cloudinary: { uploader: { upload: vi.fn() } },
 }));
 
-vi.mock("bcrypt", () => ({
+vi.mock("bcryptjs", () => ({
   default: { hash: vi.fn() },
 }));
 
 import { UserModel } from "@/lib/models/UserModel";
 import { firestoreDB } from "@/lib/FirestoreConn";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 describe("UserModel", () => {
   beforeEach(() => vi.clearAllMocks());

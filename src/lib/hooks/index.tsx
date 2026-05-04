@@ -95,9 +95,10 @@ export const useUpdateUserData = () => {
 
 export const useMyRoomsIDs = () => {
   const email = useUserStore((s) => s.userEmail);
+  const token = useUserStore((s) => s.userToken);
   return async () => {
     try {
-      const myRooms = await APIGetRoomsIDs(email);
+      const myRooms = await APIGetRoomsIDs(email, token);
       return myRooms;
     } catch (error) {
       console.error(error);
@@ -107,9 +108,10 @@ export const useMyRoomsIDs = () => {
 
 export const useMyGuestRoomsIDs = () => {
   const email = useUserStore((s) => s.userEmail);
+  const token = useUserStore((s) => s.userToken);
   return async () => {
     try {
-      const myRooms = await APIGetGuestRoomsIDs(email);
+      const myRooms = await APIGetGuestRoomsIDs(email, token);
       return myRooms;
     } catch (error) {
       console.error(error);
