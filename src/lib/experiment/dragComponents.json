@@ -1,0 +1,12 @@
+[
+    {
+        "id": "1",
+        "type": "text",
+        "value": "Hola mundo"
+    },
+    {
+        "id": "2",
+        "type": "button",
+        "label": "Aceptar"
+    }
+]

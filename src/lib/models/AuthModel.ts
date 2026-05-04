@@ -1,5 +1,5 @@
 import { firestoreDB } from "@/lib/FirestoreConn";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 class AuthModel {
@@ -31,27 +31,27 @@ class AuthModel {
       return false;
     }
   }
-  static async creatToken(email: string, password: string) {
-    //Se recibe un email y password y se retona un token firmado
+  static async createToken(email: string, password: string) {
     try {
-      const secret = process.env.SECRET_KEY as any;
-      // Buscar el documento en la colección "auth" con el correo electrónico dado
+      const secret = process.env.SECRET_KEY as string;
       const querySnapshot = await firestoreDB
         .collection("auth")
         .where("email", "==", email)
         .get();
 
-      if (querySnapshot.empty) return { error: "Invalid email or password" };
+      if (querySnapshot.empty) {
+        return { error: "Invalid email or password" };
+      }
 
       const doc = querySnapshot.docs[0];
       const savedPassword = doc.data().password;
-      // Comparar la contraseña hasheada almacenada con la contraseña proporcionada
       const passwordMatch = await bcrypt.compare(password, savedPassword);
 
-      if (!passwordMatch) return { error: "Invalid email or password" };
+      if (!passwordMatch) {
+        return { error: "Invalid email or password" };
+      }
 
-      // Generar el token JWT
-      const token = jwt.sign({ email }, secret);
+      const token = jwt.sign({ email }, secret, { expiresIn: "7d" });
       return token;
     } catch (error) {
       console.error(error);

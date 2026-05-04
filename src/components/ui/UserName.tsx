@@ -1,9 +1,8 @@
 "use client";
-import { useRecoilValue } from "recoil";
-import { userNameAtom } from "@/lib/atoms/atoms";
+import { useUserStore } from "@/lib/stores/userStore";
 import TertiaryTitle from "./Titles/TertiaryTitle";
 const UserName = () => {
-  const userNameValue = useRecoilValue(userNameAtom);
+  const userNameValue = useUserStore((s) => s.userName);
   return <TertiaryTitle>User: {userNameValue}</TertiaryTitle>;
 };
 export default UserName;

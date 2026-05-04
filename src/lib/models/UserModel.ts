@@ -1,6 +1,6 @@
 import { firestoreDB } from "@/lib/FirestoreConn";
 import { cloudinary } from "@/lib/CloudinaryConn";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 class UserModel {
   static async createMe(email: string, password: string) {
     try {
@@ -23,7 +23,7 @@ class UserModel {
         name: "User",
         email,
         userImage:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+          process.env.DEFAULT_USER_IMAGE ?? "https://res.cloudinary.com/fps-devs/image/upload/v1692930543/hqp8r3cx74cdlp8y3hq0.png",
       };
 
       const userRef = await firestoreDB.collection("users").add(newUser);
@@ -78,10 +78,7 @@ class UserModel {
         const currentUserData = (await userRef.get()).data();
         if (data.userImage) {
           const parsedImage = await cloudinary.uploader.upload(data.userImage);
-          console.log("tiene imagen para editar");
-          console.log(data.userImage);
           data.userImage = parsedImage.secure_url;
-          console.log(data.userImage);
         }
         const updatedData = { ...currentUserData, ...data };
         await userRef.update(updatedData);

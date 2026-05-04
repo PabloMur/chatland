@@ -1,11 +1,12 @@
 "use client";
-import { useRecoilState } from "recoil";
+import { useUserStore } from "@/lib/stores/userStore";
 import FormInput from "./ui/FormInput";
-import { userEmailAtom, userNameAtom } from "@/lib/atoms/atoms";
 //import Image from "next/image";
 const SettingsTabloid = () => {
-  const [email, setEmail] = useRecoilState(userEmailAtom);
-  const [name, setName] = useRecoilState(userNameAtom);
+  const email = useUserStore((s) => s.userEmail);
+  const setEmail = useUserStore((s) => s.setUserEmail);
+  const name = useUserStore((s) => s.userName);
+  const setName = useUserStore((s) => s.setUserName);
 
   const handleChangeEmail = (e: any) => {
     setEmail(e.target.value);
@@ -23,7 +24,7 @@ const SettingsTabloid = () => {
       <div className="backdrop-blur-3xl h-2/3 w-2/3 flex overflow-hidden rounded-3xl shadow-custom">
         <div className=" w-1/2 grid place-items-center">
           <div className="h-full w-full bg-black text-white grid place-items-center">
-            Arranca tu nueva imagen
+            Arrastra tu nueva imagen
           </div>
         </div>
         <div className="w-1/2">

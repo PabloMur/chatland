@@ -1,4 +1,8 @@
 const TertiaryTitle = ({ children }: any) => {
-  return <h3 className="text-indigo-900 text-lg">{children}</h3>;
+  return (
+    <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.7)" }}>
+      {children}
+    </span>
+  );
 };
 export default TertiaryTitle;

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(taskkill /PID 24196 /F)",
+      "Bash(taskkill /PID 26160 /F)",
+      "Bash(powershell -Command \"Get-Process -Id 24196 -ErrorAction SilentlyContinue | Select-Object Name,Id,Path\")",
+      "Bash(powershell -Command \"Stop-Process -Id 24196 -Force\")",
+      "Bash(npx next build)",
+      "Bash(npm show next version)",
+      "Bash(npm install jose)"
+    ]
+  }
+}

@@ -4,7 +4,7 @@ import { firestoreDB } from "@/lib/FirestoreConn";
 //Tarea: Hacer que esto funcione con un controller mejor
 export async function GET(request: NextRequest, { params }: any) {
   try {
-    const { roomId } = params;
+    const { roomId } = await params;
     const snapshotRef = firestoreDB.collection("rooms").doc(roomId);
     const snapshot = (await snapshotRef.get()).data();
     if (snapshot !== undefined)

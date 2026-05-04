@@ -1,21 +1,22 @@
 "use client";
-import { menuActive } from "@/lib/atoms/uiAtoms";
-import { useRecoilState } from "recoil";
+import { useUIStore } from "@/lib/stores/uiStore";
+
 const Burger = () => {
-  const [active, setActive] = useRecoilState(menuActive);
-  const handleClick = () => {
-    !active ? setActive(true) : setActive(false);
-  };
+  const menuActive = useUIStore((s) => s.menuActive);
+  const setMenuActive = useUIStore((s) => s.setMenuActive);
   return (
-    <div
-      onClick={handleClick}
-      className="h-8 w-8 p-1  border border-orange-100 border-solid rounded flex flex-col items-center justify-around"
+    <button
+      onClick={() => setMenuActive(!menuActive)}
+      className="w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg transition-all duration-200"
+      style={{
+        background: menuActive ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.05)",
+        border: "1px solid rgba(255,255,255,0.08)",
+      }}
     >
-      <div className="h-0.5 w-full bg-orange-100"></div>
-      <div className="h-0.5 w-full bg-orange-100"></div>
-      <div className="h-0.5 w-full bg-orange-100"></div>
-    </div>
+      <span className="w-4 h-0.5 rounded-full transition-all duration-300" style={{ background: menuActive ? "#a855f7" : "rgba(255,255,255,0.7)", transform: menuActive ? "rotate(45deg) translate(3px, 3px)" : "none" }} />
+      <span className="w-4 h-0.5 rounded-full transition-all duration-300" style={{ background: menuActive ? "#a855f7" : "rgba(255,255,255,0.7)", opacity: menuActive ? 0 : 1 }} />
+      <span className="w-4 h-0.5 rounded-full transition-all duration-300" style={{ background: menuActive ? "#a855f7" : "rgba(255,255,255,0.7)", transform: menuActive ? "rotate(-45deg) translate(3px, -3px)" : "none" }} />
+    </button>
   );
 };
-
 export default Burger;

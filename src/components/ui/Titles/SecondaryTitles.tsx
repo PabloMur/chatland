@@ -3,14 +3,15 @@ import { motion } from "framer-motion";
 
 const SecondaryTitle = ({ children }: any) => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="box"
+    <motion.h2
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="text-3xl font-bold tracking-tight"
+      style={{ color: "#f4f4f8" }}
     >
-      <h3 className="text-white text-5xl m-5 font-extrabold">{children}</h3>
-    </motion.div>
+      {children}
+    </motion.h2>
   );
 };
 export default SecondaryTitle;
