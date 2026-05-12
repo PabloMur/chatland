@@ -25,6 +25,7 @@ const Options = () => {
   const createRoom = useCreateRoom();
   const userEmail = useUserStore((s) => s.userEmail);
   const userToken = useUserStore((s) => s.userToken);
+  const isGuest = useUserStore((s) => s.isGuest);
   const modalSetter = useUIStore((s) => s.setGetInRoomModal);
   const setLoader = useUIStore((s) => s.setLoader);
   const roomCodeSetter = useRoomStore((s) => s.setRoomCode);
@@ -34,6 +35,10 @@ const Options = () => {
   const goTo = useGoTo();
 
   const handleCreateRoom = async () => {
+    if (isGuest) {
+      goTo("/signup");
+      return;
+    }
     setLoader(true);
     const roomCreated = await createRoom(userEmail, userToken);
     if (roomCreated) {

@@ -9,6 +9,7 @@ interface UserState {
   userToken: string;
   userRooms: string[];
   userGuestRooms: string[];
+  isGuest: boolean;
   setUserName: (name: string) => void;
   setUserEmail: (email: string) => void;
   setUserImage: (image: string) => void;
@@ -16,6 +17,7 @@ interface UserState {
   setUserToken: (token: string) => void;
   setUserRooms: (rooms: string[]) => void;
   setUserGuestRooms: (rooms: string[]) => void;
+  setIsGuest: (v: boolean) => void;
 }
 
 export const useUserStore = create<UserState>()(
@@ -28,6 +30,7 @@ export const useUserStore = create<UserState>()(
       userToken: '',
       userRooms: [],
       userGuestRooms: [],
+      isGuest: false,
       setUserName: (name) => set({ userName: name }),
       setUserEmail: (email) => set({ userEmail: email }),
       setUserImage: (image) => set({ userImage: image }),
@@ -35,6 +38,7 @@ export const useUserStore = create<UserState>()(
       setUserToken: (token) => set({ userToken: token }),
       setUserRooms: (rooms) => set({ userRooms: rooms }),
       setUserGuestRooms: (rooms) => set({ userGuestRooms: rooms }),
+      setIsGuest: (v) => set({ isGuest: v }),
     }),
     { name: 'chatland-user' }
   )

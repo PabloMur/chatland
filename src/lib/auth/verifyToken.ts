@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { headers } from "next/headers";
 import { isBlacklisted } from "@/lib/auth/tokenBlacklist";
 
-export type DecodedToken = { email: string; exp: number };
+export type DecodedToken = { email: string; exp: number; isGuest?: boolean; name?: string };
 
 export async function verifyToken(): Promise<DecodedToken> {
   const headersList = await headers();

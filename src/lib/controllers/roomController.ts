@@ -7,7 +7,7 @@ class RoomController {
   static async createChatroom(request: Request) {
     try {
       const decoded = await verifyToken();
-      // ChatroomModel necesita el token raw para verificarlo internamente
+      if (decoded.isGuest) return { error: "Guest users cannot create rooms" };
       const authorization = (request as any).headers.get("authorization") as string;
       const token = authorization.replace("Bearer ", "");
       const roomId = await CreateChatroomModel.createChatroom(token);

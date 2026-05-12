@@ -160,6 +160,24 @@ export const APIDeleteChatroom = async (roomID: string, token: string) => {
   }
 };
 
+export const APIGetDemoAccess = async () => {
+  try {
+    const response = await axios.post(`${baseURL}auth/demo`, {}, { timeout: TIMEOUT });
+    return response.data as { token: string; name: string; email: string; roomId: string; chatroomID: string };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const APIGetGuestToken = async () => {
+  try {
+    const response = await axios.post(`${baseURL}auth/guest`, {}, { timeout: TIMEOUT });
+    return response.data as { token: string; name: string; email: string };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const APILogout = async () => {
   try {
     await axios.post(`${baseURL}auth/logout`, {}, { timeout: TIMEOUT });

@@ -7,11 +7,13 @@ const CloseSessionButton = () => {
   const router = useRouter();
   const setUserToken = useUserStore((s) => s.setUserToken);
   const setUserEmail = useUserStore((s) => s.setUserEmail);
+  const setIsGuest = useUserStore((s) => s.setIsGuest);
 
   const handleClick = async () => {
     await APILogout();
     setUserToken("");
     setUserEmail("");
+    setIsGuest(false);
     router.push("/login");
   };
 

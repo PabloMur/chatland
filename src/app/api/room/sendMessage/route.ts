@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 const MAX_MESSAGES = 200;
 
 type Message = {
-  from: "owner" | "guest";
+  from: string;
   message: string;
 };
 
@@ -34,19 +34,14 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Room not found" }, { status: 404 });
     }
 
-    // Derivar el rol desde el token — el cliente no puede declararlo
+    // Verificar que el sender pertenece a la sala (seguridad server-side)
     const { createdBy, guest } = roomData;
-    let from: "owner" | "guest";
-    if (decoded.email === createdBy) {
-      from = "owner";
-    } else if (decoded.email === guest) {
-      from = "guest";
-    } else {
+    if (decoded.email !== createdBy && decoded.email !== guest) {
       return NextResponse.json({ error: "Not a member of this room" }, { status: 403 });
     }
 
     const existingMessages: Message[] = roomData.messages || [];
-    const newMessage: Message = { from, message: message.trim() };
+    const newMessage: Message = { from: decoded.email, message: message.trim() };
 
     // Mantener solo los últimos MAX_MESSAGES para no superar el límite de Realtime DB
     const updatedMessages = [...existingMessages, newMessage].slice(-MAX_MESSAGES);
