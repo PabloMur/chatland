@@ -6,6 +6,10 @@ const ProfileContent = () => {
   const userImage = useUserStore((s) => s.userImage);
   const userEmail = useUserStore((s) => s.userEmail);
   const userName = useUserStore((s) => s.userName);
+  const isGuest = useUserStore((s) => s.isGuest);
+
+  const displayEmail = isGuest ? "Modo invitado" : userEmail;
+  const displayName = isGuest ? userName : (userName || "Usuario");
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-8">
@@ -34,7 +38,7 @@ const ProfileContent = () => {
 
           {/* Avatar */}
           <div className="px-6 pb-6">
-            <div className="flex items-end gap-4 -mt-12 mb-5">
+            <div className="flex items-end gap-4 -mt-12 mb-5 relative z-10">
               <div
                 className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0"
                 style={{
@@ -47,8 +51,8 @@ const ProfileContent = () => {
                 ) : (
                   <div className="w-full h-full flex items-center justify-center" style={{ color: "#a855f7" }}>
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
                     </svg>
                   </div>
                 )}
@@ -59,10 +63,10 @@ const ProfileContent = () => {
             <div className="space-y-4">
               <div>
                 <h2 className="text-xl font-bold" style={{ color: "#f4f4f8" }}>
-                  {userName || "Usuario"}
+                  {displayName}
                 </h2>
                 <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  {userEmail}
+                  {displayEmail}
                 </p>
               </div>
 
@@ -78,7 +82,7 @@ const ProfileContent = () => {
                   style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.12)" }}
                 >
                   <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>Email</p>
-                  <p className="text-sm font-medium truncate" style={{ color: "#a855f7" }}>{userEmail || "-"}</p>
+                  <p className="text-sm font-medium truncate" style={{ color: "#a855f7" }}>{displayEmail}</p>
                 </div>
                 <div
                   className="p-4 rounded-xl"
